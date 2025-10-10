@@ -1,0 +1,23 @@
+<div class="flex flex-col h-screen dark:bg-gray-900">
+  <!-- Content Area -->
+  <main class="flex-1 overflow-auto">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg">
+    <div class="flex justify-around items-center h-16">
+      @for (tab of tabs(); track tab.id) {
+        <a
+          [routerLink]="[tab.path]"
+          routerLinkActive="text-blue-600 dark:text-blue-400"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="flex flex-col items-center justify-center flex-1 h-full transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
+        >
+          <span class="text-2xl mb-1">{{ tab.icon }}</span>
+          <span class="text-xs font-medium">{{ tab.label }}</span>
+        </a>
+      }
+    </div>
+  </nav>
+</div>

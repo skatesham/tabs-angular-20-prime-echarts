@@ -2,8 +2,6 @@
 trigger: always_on
 ---
 
-showtime — juntei tudo num guia único, direto ao ponto e sem repetições desnecessárias. Aqui vai a versão consolidada:
-
 # Angular 20 + PrimeNG + Tailwind — Guia Único
 
 ## 1) Objetivo
@@ -179,7 +177,7 @@ refreshPage() { /* ... */ }
 
 ```ts
 // shared/ui/text-input/text-input.component.ts
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'p-text-input',
@@ -189,7 +187,7 @@ import { Component, input, output } from '@angular/core';
     <input [id]="id()" [value]="value()" (input)="changed.emit($any($event.target).value)" />
     @if (error()) { <small class="text-error">{{ error() }}</small> }
   `,
-  changeDetection: 0, // OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush, // OnPush
 })
 export class TextInputComponent {
   readonly id = input<string>('txt-' + Math.random().toString(36).slice(2));
@@ -204,7 +202,7 @@ export class TextInputComponent {
 
 ```ts
 // features/users/pages/list/users.page.ts
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -215,7 +213,7 @@ import { UsersService } from '../../services/users.service';
     @if (loading()) { <p-skeleton height="2rem"></p-skeleton> }
     @for (u of users(); track u.id) { <div>{{ u.name }}</div> }
   `,
-  changeDetection: 0,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class UsersPage {
   private svc = inject(UsersService);
@@ -245,7 +243,3 @@ export default class UsersPage {
 * [ ] Dark mode verificado.
 * [ ] Comentário 1-linha em métodos principais (se necessário).
 * [ ] Testes mínimos: render de dumb component; service (regra); guard/resolver (feliz/erro).
-
----
-
-Quer que eu converta isso para um **README.md** padrão do repo e (se quiser) um **schematic `ng g`** com a estrutura `features/<feat>/{pages,components,services}`?
