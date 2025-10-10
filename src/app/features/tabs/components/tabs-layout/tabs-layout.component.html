@@ -6,16 +6,18 @@
 
   <!-- Bottom Navigation -->
   <nav class="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg">
-    <div class="flex justify-around items-center h-16">
+    <div class="flex justify-around items-center py-3 px-4">
       @for (tab of tabs(); track tab.id) {
         <a
           [routerLink]="[tab.path]"
-          routerLinkActive="text-blue-600 dark:text-blue-400"
+          routerLinkActive="active-tab"
           [routerLinkActiveOptions]="{ exact: false }"
-          class="flex flex-col items-center justify-center flex-1 h-full transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
+          class="flex flex-col items-center justify-center gap-1 transition-all duration-300 hover:scale-105"
         >
-          <span class="text-2xl mb-1">{{ tab.icon }}</span>
-          <span class="text-xs font-medium">{{ tab.label }}</span>
+          <div class="tab-button w-14 h-14 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 shadow-md hover:shadow-lg transition-all duration-300">
+            <span class="text-2xl">{{ tab.icon }}</span>
+          </div>
+          <span class="text-xs font-medium text-gray-600 dark:text-gray-400">{{ tab.label }}</span>
         </a>
       }
     </div>
