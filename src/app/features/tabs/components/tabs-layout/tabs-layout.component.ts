@@ -40,8 +40,17 @@ export class TabsLayoutComponent {
   private router = inject(Router);
 
   readonly tabs = signal<TabItem[]>([
-    { id: 'home', label: 'Home', path: 'home', icon: '🏠' },
-    { id: 'ideas', label: 'Ideas', path: 'ideas', icon: '💡' },
+    { id: 'home', label: 'Fluxo', path: 'home', icon: '✨' },
+    { id: 'ideas', label: 'Rituais', path: 'ideas', icon: '🔮' },
     { id: 'config', label: 'Config', path: 'config', icon: '⚙️' },
   ]);
+
+  // Verifica se a rota atual é de ritual para ativar a tab Rituais
+  isRitualRoute(tabPath: string): boolean {
+    const currentUrl = this.router.url;
+    if (tabPath === 'ideas') {
+      return currentUrl.includes('/ideas') || currentUrl.includes('/ritual-');
+    }
+    return false;
+  }
 }

@@ -1,4 +1,15 @@
-<div class="flex flex-col items-center justify-center h-full p-4">
-  <h1 class="text-3xl font-bold mb-4 dark:text-white">Ideas</h1>
-  <p class="text-lg text-gray-600 dark:text-gray-300">Hello World from Ideas Tab!</p>
+<div class="flex flex-col h-full p-4 overflow-auto bg-gray-50 dark:bg-gray-900 bg-contain bg-center bg-no-repeat" style="background-image: url('images/symbol-7248852_1920.png');">
+  <p-page-header
+    title="Rituais"
+    subtitle="Práticas sagradas e cerimônias de manifestação"
+    icon="🔮"
+    badgeIcon="🌙"
+    badgeLabel="Sagrado"
+    gradientFrom="purple-500"
+    gradientVia="pink-500"
+    gradientTo="rose-500">
+  </p-page-header>
+  
+  <!-- Conteúdo da página -->
+  <p-quantum-activities [showAll]="true"></p-quantum-activities>
 </div>

@@ -1,0 +1,424 @@
+<div class="flex flex-col h-full p-4 overflow-auto bg-gray-50 dark:bg-gray-900 bg-contain bg-center bg-no-repeat" style="background-image: url('images/symbol-7248852_1920.png');">
+  <p-page-header
+    title="Portal da Prosperidade"
+    subtitle="Ritual semanal de alinhamento e expansão"
+    icon="🌀"
+    badgeIcon="📅"
+    badgeLabel="Semanal"
+    gradientFrom="blue-500"
+    gradientVia="indigo-500"
+    gradientTo="purple-500">
+  </p-page-header>
+  
+  <!-- Introdução -->
+  <div class="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-xl p-6 border-l-4 border-blue-500">
+    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
+      <span>🌊</span>
+      <span>Sincronização Semanal</span>
+    </h2>
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+      Um ritual semanal de <strong>30-60 minutos</strong> para alinhar frequências, celebrar conquistas e co-criar a próxima onda de realizações.
+    </p>
+    <div class="flex flex-wrap gap-2 text-sm">
+      <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">⏱️ 30-60 min</span>
+      <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full">👥 Toda equipe</span>
+      <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">🎯 Foco e clareza</span>
+    </div>
+  </div>
+
+  <!-- Princípios Quânticos para a Reunião -->
+  <div class="mb-6">
+    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
+      <span>✨</span>
+      <span>Princípios para Fluir</span>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-3">
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-cyan-400">
+        <h3 class="text-sm font-bold text-cyan-700 dark:text-cyan-400 mb-1">🎯 Presença Consciente</h3>
+        <p class="text-xs text-gray-600 dark:text-gray-400">Cada pessoa traz sua atenção plena. Celulares em silêncio, mente no aqui e agora.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-blue-400">
+        <h3 class="text-sm font-bold text-blue-700 dark:text-blue-400 mb-1">🌊 Escuta Ativa</h3>
+        <p class="text-xs text-gray-600 dark:text-gray-400">Ouvir para compreender, não para responder. Cada voz tem valor único.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-purple-400">
+        <h3 class="text-sm font-bold text-purple-700 dark:text-purple-400 mb-1">⚡ Objetividade Leve</h3>
+        <p class="text-xs text-gray-600 dark:text-gray-400">Discussões longas ficam para depois. Aqui é alinhamento, não debate.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-pink-400">
+        <h3 class="text-sm font-bold text-pink-700 dark:text-pink-400 mb-1">💫 Energia Construtiva</h3>
+        <p class="text-xs text-gray-600 dark:text-gray-400">Foco em soluções, não em culpas. Problemas são oportunidades de evolução.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jornada do Ritual -->
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+      <span>🗺️</span>
+      <span>Roteiro do Ritual</span>
+    </h2>
+
+    <!-- Progresso do Ritual -->
+    <div class="mb-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Progresso do Ritual</span>
+        <span class="text-sm font-bold text-indigo-600 dark:text-indigo-400">{{ completedSteps() }}/6 etapas</span>
+      </div>
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+        <div 
+          class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500 ease-out"
+          [style.width.%]="progressPercentage()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Etapa 1: Abertura -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-cyan-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input 
+          type="checkbox" 
+          (change)="toggleStep(0)"
+          class="w-5 h-5 text-cyan-600 rounded focus:ring-cyan-500 cursor-pointer">
+        <span class="text-2xl">🔰</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-cyan-700 dark:text-cyan-400">Abertura - Sintonizando Frequências</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Alinhar energia e propósito da semana</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full">5 min</span>
+      </div>
+      
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-cyan-50 dark:bg-cyan-950/20 rounded-lg">
+          <span class="text-cyan-600 dark:text-cyan-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Como foi a semana?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-cyan-50 dark:bg-cyan-950/20 rounded-lg">
+          <span class="text-cyan-600 dark:text-cyan-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Algum micro-orgulho ou vitória para celebrar?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progresso -->
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 2: Entregas e Realizações -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-green-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input 
+          type="checkbox" 
+          (change)="toggleStep(1)"
+          class="w-5 h-5 text-green-600 rounded focus:ring-green-500 cursor-pointer">
+        <span class="text-2xl">✅</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-green-700 dark:text-green-400">Entregas & Realizações</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Avaliar o que foi manifestado e o que está em movimento</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full">10-15 min</span>
+      </div>
+      
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
+          <span class="text-green-600 dark:text-green-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que foi entregue esta semana?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
+          <span class="text-green-600 dark:text-green-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que está em andamento?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
+          <span class="text-green-600 dark:text-green-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Algo travado? Identificar bloqueios e pedir apoio</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
+          <span class="text-green-600 dark:text-green-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Quais são as prioridades da próxima semana?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progresso -->
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 3: Conexões e Feedbacks -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-blue-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input 
+          type="checkbox" 
+          (change)="toggleStep(2)"
+          class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer">
+        <span class="text-2xl">💬</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-blue-700 dark:text-blue-400">Conexões & Feedbacks</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Verificar a energia das interações e relacionamentos</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">5-10 min</span>
+      </div>
+      
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+          <span class="text-blue-600 dark:text-blue-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Algum feedback positivo recebido?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+          <span class="text-blue-600 dark:text-blue-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Alguma interação que precisa de atenção?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+          <span class="text-blue-600 dark:text-blue-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Como está o fluxo de comunicação?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progresso -->
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 4: Recursos e Energia -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-purple-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input 
+          type="checkbox" 
+          (change)="toggleStep(3)"
+          class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500 cursor-pointer">
+        <span class="text-2xl">🧺</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-purple-700 dark:text-purple-400">Recursos & Energia</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Verificar se temos tudo para fluir com eficiência</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">5 min</span>
+      </div>
+      
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
+          <span class="text-purple-600 dark:text-purple-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Falta algum recurso essencial?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
+          <span class="text-purple-600 dark:text-purple-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Algum desperdício de tempo ou energia?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
+          <span class="text-purple-600 dark:text-purple-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Como podemos otimizar o fluxo?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progresso -->
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 5: Aprendizados -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-pink-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input 
+          type="checkbox" 
+          (change)="toggleStep(4)"
+          class="w-5 h-5 text-pink-600 rounded focus:ring-pink-500 cursor-pointer">
+        <span class="text-2xl">💡</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-pink-700 dark:text-pink-400">Aprendizados & Ajustes</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Sabedoria coletiva para evoluir juntos</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full">5 min</span>
+      </div>
+      
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-pink-50 dark:bg-pink-950/20 rounded-lg">
+          <span class="text-pink-600 dark:text-pink-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">➕ O que devemos continuar fazendo?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-pink-50 dark:bg-pink-950/20 rounded-lg">
+          <span class="text-pink-600 dark:text-pink-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">➖ O que devemos parar de fazer?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-pink-50 dark:bg-pink-950/20 rounded-lg">
+          <span class="text-pink-600 dark:text-pink-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">🔄 O que devemos tentar de novo?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progresso -->
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 6: Foco da Semana -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-indigo-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input 
+          type="checkbox" 
+          (change)="toggleStep(5)"
+          class="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 cursor-pointer">
+        <span class="text-2xl">🎯</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-indigo-700 dark:text-indigo-400">Foco da Próxima Semana</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Sair com clareza cristalina de direção</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full">5 min</span>
+      </div>
+      
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+          <span class="text-indigo-600 dark:text-indigo-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Quais são os 3 focos principais da semana?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+          <span class="text-indigo-600 dark:text-indigo-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Alguém precisa de apoio ou colaboração?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+          <span class="text-indigo-600 dark:text-indigo-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Qual é a intenção coletiva para a semana?</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dicas para Manter o Fluxo -->
+  <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl p-6 shadow-xl text-white mb-6">
+    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+      <span>✨</span>
+      <span>Dicas para Manter o Fluxo</span>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">🔄</span>
+        <div>
+          <strong>Revezar facilitação</strong>
+          <p class="text-sm text-white/90">Cada semana uma pessoa conduz o ritual</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">🎨</span>
+        <div>
+          <strong>Visual claro e bonito</strong>
+          <p class="text-sm text-white/90">Use cores, ícones e ilustrações</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">😊</span>
+        <div>
+          <strong>Momento leveza</strong>
+          <p class="text-sm text-white/90">Frase inspiradora ou história da semana</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">📝</span>
+        <div>
+          <strong>Registrar aprendizados</strong>
+          <p class="text-sm text-white/90">1 sabedoria coletiva por semana</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Troubleshooting -->
+  <div class="mb-6">
+    <button 
+      (click)="toggleTroubleshooting()"
+      class="w-full bg-amber-50 dark:bg-amber-950/30 hover:bg-amber-100 dark:hover:bg-amber-950/50 rounded-xl p-4 shadow-md transition-all duration-300 flex items-center justify-between border-2 border-amber-200 dark:border-amber-800">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🆘</span>
+        <div class="text-left">
+          <h3 class="text-base font-bold text-amber-700 dark:text-amber-400">Dificuldades na Reunião?</h3>
+          <p class="text-xs text-gray-600 dark:text-gray-400">Soluções para desafios comuns</p>
+        </div>
+      </div>
+      <span class="text-2xl text-amber-600 dark:text-amber-400 transition-transform" [class.rotate-180]="showTroubleshooting()">
+        ▼
+      </span>
+    </button>
+
+    @if (showTroubleshooting()) {
+      <div class="mt-3 grid md:grid-cols-2 gap-3">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-red-400">
+          <h4 class="text-sm font-bold text-red-700 dark:text-red-400 mb-2">🗣️ Alguém monopoliza a conversa</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Use um "bastão da palavra" (objeto físico ou virtual). Só quem tem o bastão fala.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Técnica de facilitação ágil</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-orange-400">
+          <h4 class="text-sm font-bold text-orange-700 dark:text-orange-400 mb-2">⏰ Reunião passa do tempo</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Defina um timekeeper. Use timer visível. Discussões longas vão para "parking lot".</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Timeboxing (Scrum)</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-yellow-400">
+          <h4 class="text-sm font-bold text-yellow-700 dark:text-yellow-400 mb-2">😶 Pessoas não participam</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Faça perguntas diretas e gentis. "João, como foi sua semana?" Crie espaço seguro.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Facilitação inclusiva</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-green-400">
+          <h4 class="text-sm font-bold text-green-700 dark:text-green-400 mb-2">🔥 Conflito ou tensão surge</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Pause. Respire. "Vamos focar em soluções, não em culpas." Agende conversa privada depois.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Comunicação Não-Violenta (CNV)</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-blue-400">
+          <h4 class="text-sm font-bold text-blue-700 dark:text-blue-400 mb-2">📱 Distrações (celular, laptop)</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Acordo coletivo: dispositivos em silêncio. Emergências são exceção. Lidere pelo exemplo.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Presença consciente</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-indigo-400">
+          <h4 class="text-sm font-bold text-indigo-700 dark:text-indigo-400 mb-2">🌀 Reunião perde o foco</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Tenha o roteiro visível. Facilitador gentilmente redireciona: "Ótimo ponto! Vamos anotar e voltar ao foco."</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Facilitação com agenda</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-purple-400">
+          <h4 class="text-sm font-bold text-purple-700 dark:text-purple-400 mb-2">😓 Energia baixa do grupo</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Faça um break de 2 min. Alongamento rápido. Mude de ambiente. Celebre pequenas vitórias.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Energizers (facilitação)</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-pink-400">
+          <h4 class="text-sm font-bold text-pink-700 dark:text-pink-400 mb-2">❓ Decisões não são tomadas</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Use votação rápida (polegares, números). Defina quem decide. Experimente "consent" ao invés de consenso.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Sociocracia / Holocracia</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Call to Action -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center mb-6">
+    <p class="text-lg font-medium text-gray-800 dark:text-white mb-2">
+      Pronto para a Sincronização Semanal?
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 italic">
+      "Quando o ritmo está alinhado, a prosperidade flui naturalmente"
+    </p>
+  </div>
+
+  <!-- Botão Encerrar Ritual (Final) -->
+  <button 
+    (click)="completeRitual()"
+    class="mb-6 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group">
+    <span class="text-2xl group-hover:scale-110 transition-transform">✨</span>
+    <span class="text-lg">Encerrar Ritual</span>
+    <span class="text-2xl group-hover:scale-110 transition-transform">🎉</span>
+  </button>
+</div>

@@ -1,0 +1,199 @@
+<div class="flex flex-col h-full p-4 overflow-auto bg-gray-50 dark:bg-gray-900 bg-contain bg-center bg-no-repeat" style="background-image: url('images/symbol-7248852_1920.png');">
+  <p-page-header
+    title="Daily de Prosperidade"
+    subtitle="Alinhamento diário com foco, clareza e abundância"
+    icon="☀️"
+    badgeIcon="🎯"
+    badgeLabel="Diário"
+    gradientFrom="amber-500"
+    gradientVia="orange-500"
+    gradientTo="red-500">
+  </p-page-header>
+  
+  <!-- Botão Encerrar Ritual (Topo) -->
+  <button 
+    (click)="completeRitual()"
+    class="mb-6 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group">
+    <span class="text-2xl group-hover:scale-110 transition-transform">✨</span>
+    <span class="text-lg">Encerrar Ritual</span>
+    <span class="text-2xl group-hover:scale-110 transition-transform">🎉</span>
+  </button>
+  
+  <!-- Introdução -->
+  <div class="mb-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 rounded-xl p-6 border-l-4 border-amber-500">
+    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
+      <span>🌟</span>
+      <span>O que é o Daily de Prosperidade?</span>
+    </h2>
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+      Inspirado no Daily Scrum clássico, este ritual diário de <strong>15 minutos</strong> mantém você alinhado com suas metas, 
+      remove obstáculos e celebra progressos. Com um toque de otimismo e foco em prosperidade, 
+      transformamos a reunião tradicional em um momento de clareza e energia positiva.
+    </p>
+  </div>
+
+  <!-- As 3 Perguntas Clássicas -->
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+      <span>💬</span>
+      <span>As 3 Perguntas Essenciais</span>
+    </h2>
+    
+    <div class="grid gap-4 md:grid-cols-3">
+      <!-- Pergunta 1 -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 border-green-500">
+        <div class="text-4xl mb-3 text-center">✅</div>
+        <h3 class="text-lg font-bold text-green-700 dark:text-green-400 mb-3 text-center">
+          O que conquistei ontem?
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          Celebre suas vitórias! Reconhecer o progresso amplifica a energia de realização.
+        </p>
+        <div class="bg-green-50 dark:bg-green-950/30 rounded-lg p-3">
+          <p class="text-xs text-gray-700 dark:text-gray-300">
+            <strong>Dica:</strong> Liste 1-3 conquistas concretas, mesmo que pequenas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pergunta 2 -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 border-blue-500">
+        <div class="text-4xl mb-3 text-center">🎯</div>
+        <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 mb-3 text-center">
+          O que vou realizar hoje?
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          Defina intenções claras. Foco gera resultados tangíveis e momentum positivo.
+        </p>
+        <div class="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-3">
+          <p class="text-xs text-gray-700 dark:text-gray-300">
+            <strong>Dica:</strong> Escolha 2-3 prioridades máximas. Menos é mais!
+          </p>
+        </div>
+      </div>
+
+      <!-- Pergunta 3 -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 border-purple-500">
+        <div class="text-4xl mb-3 text-center">🚧</div>
+        <h3 class="text-lg font-bold text-purple-700 dark:text-purple-400 mb-3 text-center">
+          Há algum obstáculo?
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          Identifique bloqueios cedo. Pedir ajuda é sinal de força, não fraqueza.
+        </p>
+        <div class="bg-purple-50 dark:bg-purple-950/30 rounded-lg p-3">
+          <p class="text-xs text-gray-700 dark:text-gray-300">
+            <strong>Dica:</strong> Se houver impedimento, comunique e busque apoio.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Melhores Práticas -->
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+      <span>⚡</span>
+      <span>Como Fazer Seu Daily Brilhar</span>
+    </h2>
+    
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md">
+        <h3 class="font-bold text-cyan-700 dark:text-cyan-400 mb-2 flex items-center gap-2">
+          <span>⏰</span>
+          <span>Mesmo horário, todo dia</span>
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          Crie um ritual. Consistência gera disciplina e clareza mental.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md">
+        <h3 class="font-bold text-cyan-700 dark:text-cyan-400 mb-2 flex items-center gap-2">
+          <span>⏱️</span>
+          <span>Máximo 15 minutos</span>
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          Seja objetivo. Discussões longas ficam para depois.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md">
+        <h3 class="font-bold text-cyan-700 dark:text-cyan-400 mb-2 flex items-center gap-2">
+          <span>🎤</span>
+          <span>Todos participam</span>
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          Cada voz importa. Compartilhar cria conexão e alinhamento.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md">
+        <h3 class="font-bold text-cyan-700 dark:text-cyan-400 mb-2 flex items-center gap-2">
+          <span>📝</span>
+          <span>Registre insights</span>
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          Anote ações e impedimentos. O que não é registrado, se perde.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefícios -->
+  <div class="bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl p-6 shadow-xl text-white mb-6">
+    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+      <span>🌈</span>
+      <span>Benefícios do Daily de Prosperidade</span>
+    </h2>
+    <div class="grid gap-3 md:grid-cols-2">
+      <div class="flex items-start gap-2">
+        <span class="text-2xl">✨</span>
+        <div>
+          <strong>Clareza diária</strong>
+          <p class="text-sm text-white/90">Sabe exatamente o que fazer hoje</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-2">
+        <span class="text-2xl">🚀</span>
+        <div>
+          <strong>Momentum constante</strong>
+          <p class="text-sm text-white/90">Pequenos passos diários = grandes resultados</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-2">
+        <span class="text-2xl">🤝</span>
+        <div>
+          <strong>Colaboração fluida</strong>
+          <p class="text-sm text-white/90">Time alinhado e sem surpresas</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-2">
+        <span class="text-2xl">🎯</span>
+        <div>
+          <strong>Foco no essencial</strong>
+          <p class="text-sm text-white/90">Elimina distrações e prioriza o que importa</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center mb-6">
+    <p class="text-lg font-medium text-gray-800 dark:text-white mb-2">
+      Pronto para começar seu Daily de Prosperidade?
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 italic">
+      "15 minutos por dia que transformam sua produtividade e bem-estar"
+    </p>
+  </div>
+
+  <!-- Botão Encerrar Ritual (Final) -->
+  <button 
+    (click)="completeRitual()"
+    class="mb-6 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group">
+    <span class="text-2xl group-hover:scale-110 transition-transform">✨</span>
+    <span class="text-lg">Encerrar Ritual</span>
+    <span class="text-2xl group-hover:scale-110 transition-transform">🎉</span>
+  </button>
+</div>

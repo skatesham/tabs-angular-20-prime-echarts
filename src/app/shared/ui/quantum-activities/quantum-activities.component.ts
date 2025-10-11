@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, effect, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 
 interface Activity {
@@ -19,7 +20,11 @@ interface Activity {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuantumActivitiesComponent {
+  private readonly router = inject(Router);
   private readonly now = signal(new Date());
+  
+  // Input para controlar se deve mostrar todas as atividades ou apenas pendentes
+  readonly showAll = input<boolean>(false);
 
   readonly activities: Activity[] = [
     {
@@ -63,7 +68,12 @@ export class QuantumActivitiesComponent {
   }
 
   get visibleActivities() {
-    const visible = this.activities.filter(activity => !this.isCompleted(activity.id));
+    // Se showAll = true, mostra todas as atividades (modo Ideas)
+    // Se showAll = false, mostra apenas as não concluídas (modo Home)
+    const visible = this.showAll() 
+      ? this.activities 
+      : this.activities.filter(activity => !this.isCompleted(activity.id));
+    
     // Inicializa pending dates para atividades visíveis
     visible.forEach(activity => {
       const stored = localStorage.getItem('quantum-activities-pending');
@@ -181,6 +191,16 @@ export class QuantumActivitiesComponent {
     }
   }
 
+  // Verifica se deve mostrar o badge de dias pendentes
+  shouldShowPendingBadge(activityId: string): boolean {
+    // Se a atividade foi concluída, não mostra o badge
+    if (this.isCompleted(activityId)) {
+      return false;
+    }
+    // Se não foi concluída, mostra apenas se tiver dias pendentes
+    return this.getPendingDays(activityId) > 0;
+  }
+
   private initializePendingDate(activityId: string) {
     const stored = localStorage.getItem('quantum-activities-pending');
     const data = stored ? JSON.parse(stored) : {};
@@ -227,7 +247,13 @@ export class QuantumActivitiesComponent {
   }
 
   onActivityClick(activityId: string) {
-    // TODO: Navegar para página de reunião
-    console.log('Navegando para reunião:', activityId);
+    // Navega para a página do ritual correspondente
+    if (activityId === 'daily') {
+      this.router.navigate(['/tabs/ritual-daily']);
+    } else if (activityId === 'weekly') {
+      this.router.navigate(['/tabs/ritual-weekly']);
+    } else if (activityId === 'monthly') {
+      this.router.navigate(['/tabs/ritual-monthly']);
+    }
   }
 }

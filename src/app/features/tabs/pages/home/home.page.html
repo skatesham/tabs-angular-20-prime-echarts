@@ -1,32 +1,14 @@
 <div class="flex flex-col h-full p-4 overflow-auto bg-gray-50 dark:bg-gray-900 bg-contain bg-center bg-no-repeat" style="background-image: url('images/symbol-7248852_1920.png');">
-  <!-- Header Avançado -->
-  <div class="mb-6 relative">
-    <div class="flex items-center gap-4 p-6 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 rounded-2xl shadow-xl overflow-hidden">
-      <!-- Padrão de fundo -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute inset-0" style="background-image: url('images/metatrons-cube-1601161_1920.png'); background-size: cover; background-position: center;"></div>
-      </div>
-      
-      <!-- Conteúdo -->
-      <div class="relative flex-1">
-        <div class="flex items-center gap-3 mb-2">
-          <span class="text-4xl">🌟</span>
-          <h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Dashboard
-          </h1>
-        </div>
-        <p class="text-sm md:text-base text-white/90 font-light">
-          Painel de manifestação e crescimento consciente
-        </p>
-      </div>
-      
-      <!-- Badge decorativo -->
-      <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-        <span class="text-2xl">✨</span>
-        <span class="text-sm font-medium text-white">Ativo</span>
-      </div>
-    </div>
-  </div>
+  <p-page-header
+    title="Fluxo"
+    subtitle="Painel de manifestação e crescimento consciente"
+    icon="🌟"
+    badgeIcon="✨"
+    badgeLabel="Ativo"
+    gradientFrom="indigo-500"
+    gradientVia="purple-500"
+    gradientTo="pink-500">
+  </p-page-header>
   
   <p-welcome-card class="mb-6"></p-welcome-card>
   <p-goal-focus class="mb-6"></p-goal-focus>

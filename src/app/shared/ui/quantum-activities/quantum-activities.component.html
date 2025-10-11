@@ -27,7 +27,7 @@
             <span class="text-3xl opacity-60 hover:opacity-100 transition-opacity animate-pulse-slow" title="Cada ação consciente eleva sua frequência ✨">
               🌟
             </span>
-            @if (getPendingDays(activity.id) > 0) {
+            @if (shouldShowPendingBadge(activity.id)) {
               <span class="text-[9px] font-bold text-white bg-gradient-to-r from-purple-600 to-pink-600 px-2 py-0.5 rounded-full shadow-md">
                 {{ getPendingDays(activity.id) }}d
               </span>

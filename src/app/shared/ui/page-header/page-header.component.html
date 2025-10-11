@@ -1,0 +1,27 @@
+<div class="mb-6 relative">
+  <div class="flex items-center gap-4 p-6 bg-gradient-to-r from-{{ gradientFrom() }} via-{{ gradientVia() }} to-{{ gradientTo() }} dark:from-{{ gradientFrom().replace('500', '900') }} dark:via-{{ gradientVia().replace('500', '900') }} dark:to-{{ gradientTo().replace('500', '900') }} rounded-2xl shadow-xl overflow-hidden">
+    <!-- Padrão de fundo -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('images/metatrons-cube-1601161_1920.png'); background-size: cover; background-position: center;"></div>
+    </div>
+    
+    <!-- Conteúdo -->
+    <div class="relative flex-1">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-4xl">{{ icon() }}</span>
+        <h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          {{ title() }}
+        </h1>
+      </div>
+      <p class="text-sm md:text-base text-white/90 font-light">
+        {{ subtitle() }}
+      </p>
+    </div>
+    
+    <!-- Badge decorativo -->
+    <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+      <span class="text-2xl">{{ badgeIcon() }}</span>
+      <span class="text-sm font-medium text-white">{{ badgeLabel() }}</span>
+    </div>
+  </div>
+</div>
