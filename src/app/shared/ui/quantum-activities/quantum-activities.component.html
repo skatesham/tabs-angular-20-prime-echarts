@@ -1,22 +1,41 @@
-@if (visibleActivities.length > 0) {
-  <div class="grid gap-4 md:grid-cols-3 mb-6">
-    @for (activity of visibleActivities; track activity.id) {
+@if (hasOpenActivities) {
+  <div class="mb-6">
+    <!-- Sub-header Zen -->
+    <div class="mb-4 px-4 py-3 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 rounded-lg border-l-4 border-purple-400 dark:border-purple-600">
+      <p class="text-sm italic text-gray-700 dark:text-gray-300">
+        ✨ {{ zenMessage }}
+      </p>
+    </div>
+    
+    <div class="grid gap-4 md:grid-cols-3">
+      @for (activity of visibleActivities; track activity.id) {
       <p-card 
         class="shadow-md border-2 {{ activity.borderColor }} {{ activity.bgColor }} cursor-pointer hover:opacity-80 transition-opacity"
         (click)="onActivityClick(activity.id)">
         <div class="flex items-center gap-3">
           <span class="text-3xl">{{ activity.icon }}</span>
           <div class="flex-1">
+            <p class="text-[10px] text-gray-500 dark:text-gray-400 mb-0.5">
+              Ritual disponível para celebrar:
+            </p>
             <h3 class="text-base font-semibold {{ activity.color }}">{{ activity.name }}</h3>
             <div class="flex items-center gap-2">
               <span class="text-xs text-gray-600 dark:text-gray-400">{{ activity.frequency }}</span>
-              @if (getPendingDays(activity.id) > 0) {
-                <span class="text-[10px] text-gray-500 dark:text-gray-500">• {{ getPendingDays(activity.id) }}d pendente</span>
-              }
             </div>
+          </div>
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-3xl opacity-60 hover:opacity-100 transition-opacity animate-pulse-slow" title="Cada ação consciente eleva sua frequência ✨">
+              🌟
+            </span>
+            @if (getPendingDays(activity.id) > 0) {
+              <span class="text-[9px] font-bold text-white bg-gradient-to-r from-purple-600 to-pink-600 px-2 py-0.5 rounded-full shadow-md">
+                {{ getPendingDays(activity.id) }}d
+              </span>
+            }
           </div>
         </div>
       </p-card>
-    }
+      }
+    </div>
   </div>
 }

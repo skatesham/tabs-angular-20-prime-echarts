@@ -184,8 +184,46 @@ export class QuantumActivitiesComponent {
   private initializePendingDate(activityId: string) {
     const stored = localStorage.getItem('quantum-activities-pending');
     const data = stored ? JSON.parse(stored) : {};
-    data[activityId] = Date.now();
+    
+    // Se não existe data pendente, salva a data atual
+    if (!data[activityId]) {
+      // MOCK: Para testar, descomente a linha abaixo e comente a linha seguinte
+      // const daysAgo = activityId === 'daily' ? 2 : activityId === 'weekly' ? 5 : 12;
+      // data[activityId] = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
+      
+      // Produção: salva data atual (0 dias pendentes)
+      data[activityId] = Date.now();
+    }
+    
     localStorage.setItem('quantum-activities-pending', JSON.stringify(data));
+    // this.mockPendingDays();
+  }
+
+  // MOCK HELPER: Descomente para forçar dias pendentes (útil para testes)
+  // Chame no constructor: this.mockPendingDays();
+  private mockPendingDays() {
+    const mockData = {
+      'daily': Date.now() - (3 * 24 * 60 * 60 * 1000),    // 3 dias atrás
+      'weekly': Date.now() - (7 * 24 * 60 * 60 * 1000),   // 7 dias atrás
+      'monthly': Date.now() - (15 * 24 * 60 * 60 * 1000)  // 15 dias atrás
+    };
+    localStorage.setItem('quantum-activities-pending', JSON.stringify(mockData));
+  }
+
+  get hasOpenActivities(): boolean {
+    return this.visibleActivities.length > 0;
+  }
+
+  get zenMessage(): string {
+    const messages = [
+      'O caminho se revela a cada passo',
+      'A prática diária cultiva a paz interior',
+      'Pequenas ações criam grandes transformações',
+      'O presente é o único momento de poder',
+      'Cada respiração é uma nova oportunidade'
+    ];
+    const dayIndex = new Date().getDay();
+    return messages[dayIndex % messages.length];
   }
 
   onActivityClick(activityId: string) {

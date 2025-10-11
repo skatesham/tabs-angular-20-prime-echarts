@@ -1,6 +1,13 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 
+interface WeekDay {
+  index: number;
+  name: string;
+  theme: string;
+  icon: string;
+}
+
 @Component({
   selector: 'p-welcome-card',
   standalone: true,
@@ -11,9 +18,32 @@ import { CardModule } from 'primeng/card';
 export class WelcomeCardComponent {
   private readonly now = signal(new Date());
 
+  readonly weekDays: WeekDay[] = [
+    { index: 0, name: 'Dom', theme: 'Renovação', icon: '🌅' },
+    { index: 1, name: 'Seg', theme: 'Planejamento', icon: '📋' },
+    { index: 2, name: 'Ter', theme: 'Experimentação', icon: '🎨' },
+    { index: 3, name: 'Qua', theme: 'Fluxo Criativo', icon: '⚡' },
+    { index: 4, name: 'Qui', theme: 'Refinamento', icon: '✨' },
+    { index: 5, name: 'Sex', theme: 'Síntese', icon: '🎉' },
+    { index: 6, name: 'Sáb', theme: 'Conexão', icon: '🌿' }
+  ];
+
   // Atualiza o horário a cada minuto
   constructor() {
     setInterval(() => this.now.set(new Date()), 60000);
+  }
+
+  get currentDayIndex() {
+    return this.now().getDay();
+  }
+
+  get orderedWeekDays() {
+    const currentIndex = this.currentDayIndex;
+    // Reorganiza array para começar com o dia atual
+    return [
+      ...this.weekDays.slice(currentIndex),
+      ...this.weekDays.slice(0, currentIndex)
+    ];
   }
 
   get greeting() {
