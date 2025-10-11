@@ -1,7 +1,3 @@
----
-trigger: always_on
----
-
 # Angular 20 + PrimeNG + Tailwind — Guia Simplificado
 
 ## 1) Objetivo

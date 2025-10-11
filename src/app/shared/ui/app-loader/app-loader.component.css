@@ -1,105 +1,144 @@
-/* camada full-screen */
+/* 🔮 MANA VITAE FUN MODE */
 #app-loader {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #0f172a;
-  overflow: hidden;
-  z-index: 9999;
-  gap: 1.5rem;
-}
-
-/* imagem de fundo: 3 giros e leve zoom */
-#app-loader .bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60%;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: contain;
-  opacity: 0.4;
-  animation: rotate-bg 6s ease-in-out forwards;
-}
-
-@keyframes rotate-bg {
-  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-  50% { transform: translate(-50%, -50%) rotate(180deg) scale(0.95); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-}
-
-/* logo centralizada */
-#app-loader .logo {
-  width: 10rem;
-  height: 12rem;
-  object-fit: contain;
-  z-index: 10;
-  position: relative;
-}
-
-/* aura 528 Hz central — cobre metade da tela */
-#app-loader::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50vmin;
-  height: 50vmin;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(142, 255, 184, 0.9) 0%,
-    rgba(92, 213, 152, 0.4) 40%,
-    rgba(0, 0, 0, 0) 80%
-  );
-  filter: blur(80px);
-  opacity: 0.7;
-  animation: pulse-528 6s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes pulse-528 {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
-}
-
-/* nome com cores do arco-íris */
-#app-loader .app-name {
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
-  z-index: 10;
-  line-height: 1.2;
-}
-
-#app-loader .app-name span {
-  display: inline-block;
-}
-
-/* slogan */
-#app-loader .slogan {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #e2e8f0;
-  text-align: center;
-  z-index: 10;
-}
-
-/* sub-slogan */
-#app-loader .sub-slogan {
-  font-size: 1rem;
-  color: #cbd5e1;
-  text-align: center;
-  z-index: 10;
-}
-
-/* acessibilidade */
-@media (prefers-reduced-motion: reduce) {
-  .bg {
-    animation: none;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    overflow: hidden;
+    z-index: 9999;
+    gap: 1.5rem;
+    font-family: 'Philosopher', sans-serif;
   }
-}
+  
+  /* mandala gira tipo espiral viva */
+  #app-loader .bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 65%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    animation: spin-zoom 8s ease-in-out infinite;
+    filter: hue-rotate(60deg) brightness(1.3) contrast(1.1);
+  }
+  
+  @keyframes spin-zoom {
+    0%   { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    50%  { transform: translate(-50%, -50%) rotate(-720deg) scale(1.05); }
+    100% { transform: translate(-50%, -50%) rotate(-1440deg) scale(1); }
+  }
+  
+  
+  /* logo com aura viva */
+  #app-loader .logo {
+    width: 10rem;
+    height: 12rem;
+    top: -6vh;            /* ⬆️ lift logo */
+    object-fit: contain;
+    position: relative;
+    z-index: 10;
+    filter: drop-shadow(0 0 1rem #5cd598aa) drop-shadow(0 0 2rem #8effb8aa);
+    animation: floaty 3s ease-in-out infinite;
+  }
+  
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+  
+  /* aura 528 Hz — color shifting */
+  #app-loader::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60vmin;
+    height: 60vmin;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #8effb8 0%, #5cd598 40%, transparent 80%);
+    filter: blur(100px);
+    opacity: 0.6;
+    animation: pulse-hue 6s ease-in-out infinite;
+    z-index: 0;
+  }
+  
+  @keyframes pulse-hue {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); filter: blur(100px) hue-rotate(0deg); }
+    50%      { transform: translate(-50%, -50%) scale(1.15); filter: blur(120px) hue-rotate(90deg); }
+  }
+  
+  /* nome do app com gradiente animado */
+  #app-loader .app-name {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    z-index: 10;
+    letter-spacing: 0.05em;
+    text-transform: capitalize;
+    
+    background: linear-gradient(
+      90deg,
+      #ff6b6b,
+      #ffd36b,
+      #8fff8f,
+      #6bd3ff,
+      #b388ff,
+      #ff6bcb,
+      #ff6b6b
+    );
+    background-size: 400% 100%;       /* make gradient longer */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* ensure text shows the gradient */
+    animation: rainbow-shift 8s linear infinite;
+  }
+  
+  @keyframes rainbow-shift {
+    0%   { background-position: 0% 0; }
+    100% { background-position: 400% 0; }
+  }
+  
+  
+  /* slogan e sub */
+  #app-loader .slogan {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    text-align: center;
+    z-index: 10;
+    animation: fade-in 2s ease 0.5s forwards;
+    opacity: 0;
+  }
+  
+  #app-loader .sub-slogan {
+    font-size: 1rem;
+    color: #cbd5e1;
+    text-align: center;
+    z-index: 10;
+    animation: fade-in 2s ease 1s forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+/* center text group, slightly higher — background stays fixed */
+#app-loader .content-wrap {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+    transform: translateY(-9vh); /* slightly higher (~10% of viewport height) */
+  }
+  
+  

@@ -1,0 +1,43 @@
+<p-card class="shadow-sm">
+  <ng-template pTemplate="header">
+    <div class="px-6 pt-6 pb-4">
+      <h3 class="text-xl font-semibold dark:text-white mb-1">Atividades recomendadas diárias</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400">Mantenha o foco nas tarefas essenciais</p>
+    </div>
+  </ng-template>
+
+  <div class="flex flex-col gap-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+        {{ completedCount }} de {{ totalCount }} concluídas
+      </span>
+      <span class="text-sm font-semibold text-primary-600 dark:text-primary-400">
+        {{ progressPercentage }}%
+      </span>
+    </div>
+
+    <p-progressBar [value]="progressPercentage" [showValue]="false"></p-progressBar>
+
+    <div class="flex flex-col gap-3">
+      @for (task of tasks(); track task.id) {
+        <div class="flex items-center gap-3 p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+          <p-checkbox 
+            [binary]="true" 
+            [(ngModel)]="task.completed"
+            [inputId]="'task-' + task.id">
+          </p-checkbox>
+          <label 
+            [for]="'task-' + task.id" 
+            class="text-sm cursor-pointer flex-1"
+            [class.line-through]="task.completed"
+            [class.text-gray-500]="task.completed"
+            [class.dark:text-gray-500]="task.completed"
+            [class.text-gray-700]="!task.completed"
+            [class.dark:text-gray-300]="!task.completed">
+            {{ task.label }}
+          </label>
+        </div>
+      }
+    </div>
+  </div>
+</p-card>
