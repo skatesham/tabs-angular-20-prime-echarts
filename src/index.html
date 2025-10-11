@@ -10,25 +10,56 @@
 
 <style>
   /* camada full-screen */
-  #app-loader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0f172a;overflow:hidden;z-index:9999}
+  #app-loader{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0f172a;overflow:hidden;z-index:9999;gap:1.5rem}
   /* imagem de fundo: 3 giros e leve zoom */
-  #app-loader .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;animation:rotate-bg 6s ease-in-out forwards}
-  @keyframes rotate-bg{
-    0%{transform:rotate(0) scale(1);opacity:.4}
-    100%{transform:rotate(1080deg) scale(1.05);opacity:.5} /* 3 × 360° */
-  }
-  /* spinner puro CSS */
-  .spinner{width:52px;height:52px;border-radius:50%;border:4px solid rgba(255,255,255,.25);border-top-color:#38bdf8;animation:spin 1s linear infinite;z-index:10}
-  @keyframes spin{to{transform:rotate(360deg)}}
+  #app-loader .bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;              /* smaller size — adjust as needed */
+  height: auto;            /* keep aspect ratio */
+  transform: translate(-50%, -50%); /* center the image */
+  object-fit: contain;     /* contain instead of cover for full visibility */
+  opacity: 0.4;
+  animation: rotate-bg 6s ease-in-out forwards;
+}
+@keyframes rotate-bg {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(180deg) scale(0.95); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+  /* logo centralizada */
+  #app-loader .logo{width:10rem;height:12rem;object-fit:contain;z-index:10}
+  /* nome com cores do arco-íris */
+  #app-loader .app-name{font-size:3rem;font-weight:bold;text-align:center;z-index:10;line-height:1.2}
+  #app-loader .app-name span{display:inline-block}
+  /* slogan */
+  #app-loader .slogan{font-size:1.25rem;font-weight:600;color:#e2e8f0;text-align:center;z-index:10}
+  /* sub-slogan */
+  #app-loader .sub-slogan{font-size:1rem;color:#cbd5e1;text-align:center;z-index:10}
   /* acessibilidade */
-  @media (prefers-reduced-motion: reduce){.spinner,.bg{animation:none}}
+  @media (prefers-reduced-motion: reduce){.bg{animation:none}}
 </style>
 
 <body>
   <app-root>
-    <div id="app-loader" class="bg-white" role="status" aria-label="Carregando">
+    <div id="app-loader" role="status" aria-label="Carregando Mana Vitae">
       <img src="/images/geometric-9546071_1920.png" alt="" class="bg" />
-      <div class="spinner"></div>
+      
+      <!-- Logo centralizada -->
+      <img src="/images/symbol-7248852_1920.png" alt="Mana Vitae" class="logo" />
+      
+      <!-- Nome da App com cores do arco-íris -->
+      <h1 class="app-name">
+        <span style="color:#ef4444">M</span><span style="color:#f97316">a</span><span style="color:#eab308">n</span><span style="color:#22c55e">a</span>
+        <span style="color:#3b82f6"> V</span><span style="color:#6366f1">i</span><span style="color:#a855f7">t</span><span style="color:#ec4899">a</span><span style="color:#ef4444">e</span>
+      </h1>
+      
+      <!-- Slogan -->
+      <p class="slogan">Fluxo sagrado da vida.</p>
+      
+      <!-- Sub-slogan -->
+      <p class="sub-slogan">Doe energia, receba prosperidade.</p>
     </div>
   </app-root>
 </body>

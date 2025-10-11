@@ -2,7 +2,7 @@
 trigger: always_on
 ---
 
-# Angular 20 + PrimeNG + Tailwind — Guia Único
+# Angular 20 + PrimeNG + Tailwind — Guia Simplificado
 
 ## 1) Objetivo
 
@@ -27,8 +27,8 @@ src/app/
     http/ auth/ config/ layout/
   shared/          # design system e utilidades
     ui/ directives/ pipes/ utils/
-  data/            # tipos e transformação
-    models/ dto/ mappers/
+  data/            # modelos de domínio
+    models/
   api/             # clientes http tipados
     clients/
   state/           # stores globais (exceção)
@@ -40,7 +40,7 @@ src/app/
 ```
 
 **Responsabilidades**:
-`core` (infra única) · `shared` (UI/atom/molecule sem domínio) · `data` (Model/DTO/Mapper) · `api` (acesso remoto) · `features` (tudo que muda junto) · `state` (apenas transversal necessário).
+`core` (infra única) · `shared` (UI/atom/molecule sem domínio) · `data` (Models apenas) · `api` (acesso remoto) · `features` (tudo que muda junto) · `state` (apenas transversal necessário).
 
 ---
 
@@ -49,7 +49,7 @@ src/app/
 * UI compartilhada (`shared/ui`): **`p-<kebab>`** — ex.: `<p-text-input>`.
 * Feature interna: **`f-<feature>-<kebab>`** — ex.: `<f-auth-login-form>`.
 * Diretivas: `[pDebounce]` · Pipes: `pCurrency`.
-* Arquivos: `text-input.component.ts|html`, `login.page.ts|html`, `user.service.ts`, `auth.guard.ts`, `user.dto.ts`, `user.model.ts`, `user.mapper.ts`, `user.client.ts`.
+* Arquivos: `text-input.component.ts|html`, `login.page.ts|html`, `user.service.ts`, `auth.guard.ts`, `user.model.ts`, `user.client.ts`.
 
 ---
 
@@ -125,7 +125,7 @@ src/app/
 * **`shared/ui`** (UI apresentacional, dumb): repetição de HTML **ou** template > 60 linhas.
 * **`features/.../components`**: blocos específicos (filtro, item, banner).
 * **`features/.../services`**: regra/IO daquela feature.
-* **`data/models|dto|mappers`**: nova entidade/endpoint.
+* **`data/models`**: nova entidade.
 * **Guards/Resolvers**: navegação/autorização e pré-carregamento de dados.
 
 ---
@@ -141,11 +141,11 @@ Extraia se **qualquer**:
 
 ---
 
-## 11) Erros, Logs e Contratos
+## 11) Erros, Logs e Modelos
 
 * Erros tipados (`AppError` | unions) e mapeados em **interceptor**.
 * Logs **estruturados** (contexto + correlation id).
-* **DTO ≠ Model** (sempre mapear). Nunca usar DTO direto no template.
+* **Apenas Models**: usar interfaces de modelo diretamente, sem DTO/Mapper.
 
 ---
 
@@ -187,7 +187,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
     <input [id]="id()" [value]="value()" (input)="changed.emit($any($event.target).value)" />
     @if (error()) { <small class="text-error">{{ error() }}</small> }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush, // OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextInputComponent {
   readonly id = input<string>('txt-' + Math.random().toString(36).slice(2));
@@ -230,13 +230,13 @@ export default class UsersPage {
 
 ---
 
-## 15) Checklist de PR (único)
+## 15) Checklist de PR
 
 * [ ] `inject()` + `signal()/computed()/effect()` onde couber.
 * [ ] `@for` **com `track`** e `@if` sem lógica pesada.
 * [ ] Tamanho OK (≤60 linhas e ≤4 níveis) **ou** extraído.
 * [ ] Selector correto (`p-` para UI, `f-<feature>-` para feature).
-* [ ] **DTO ≠ Model** (+ mapper registrado).
+* [ ] **Apenas Models** (sem DTO/Mapper).
 * [ ] Rotas **lazy** e arquivos no lugar certo.
 * [ ] **PrimeNG** sem overrides pesados; **Tailwind** só layout/spacing/dark/responsivo.
 * [ ] **A11y**: labels, foco visível, navegação por teclado.

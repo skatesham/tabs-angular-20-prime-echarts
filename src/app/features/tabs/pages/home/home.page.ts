@@ -24,12 +24,17 @@ export default class HomePage implements OnInit {
     this.buyerService.getStats().subscribe({
       next: (data) => {
         console.log('Stats loaded:', data);
-        this.stats.set({ total: data.total });
-        this.loading.set(false);
+        // Delay adicional de 500ms
+        setTimeout(() => {
+          this.stats.set({ total: data.total });
+          this.loading.set(false);
+        }, 500);
       },
       error: (err) => {
         console.error('Error loading stats:', err);
-        this.loading.set(false);
+        setTimeout(() => {
+          this.loading.set(false);
+        }, 500);
       }
     });
   }
