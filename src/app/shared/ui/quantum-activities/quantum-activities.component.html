@@ -2,10 +2,15 @@
   <div class="mb-6">
     <!-- Sub-header Zen -->
     <div class="mb-4 px-4 py-3 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 rounded-lg border-l-4 border-purple-400 dark:border-purple-600">
-      <p class="text-sm italic text-gray-700 dark:text-gray-300">
-        ✨ {{ zenMessage }}
-      </p>
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">💪</span>
+        <p class="text-sm italic text-gray-700 dark:text-gray-300">
+          {{ zenMessage }}
+        </p>
+      </div>
     </div>
+
+
     
     <div class="grid gap-4 md:grid-cols-3">
       @for (activity of visibleActivities; track activity.id) {
@@ -16,7 +21,9 @@
           <span class="text-3xl">{{ activity.icon }}</span>
           <div class="flex-1">
             <p class="text-[10px] text-gray-500 dark:text-gray-400 mb-0.5">
-              Ritual disponível para celebrar:
+              @if (shouldShowPendingBadge(activity.id)) {
+                Ritual disponível para celebrar:
+              }
             </p>
             <h3 class="text-base font-semibold {{ activity.color }}">{{ activity.name }}</h3>
             <div class="flex items-center gap-2">

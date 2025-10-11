@@ -1,7 +1,7 @@
 <div class="flex flex-col h-full p-4 overflow-auto bg-gray-50 dark:bg-gray-900 bg-contain bg-center bg-no-repeat" style="background-image: url('images/symbol-7248852_1920.png');">
   <p-page-header
     title="Ciclo da Abundância"
-    subtitle="Ritual mensal de reflexão e manifestação"
+    subtitle="Reunião de Raiz e Visão — Reflexão estratégica mensal"
     icon="🌊"
     badgeIcon="🌙"
     badgeLabel="Mensal"
@@ -10,32 +10,565 @@
     gradientTo="pink-500">
   </p-page-header>
   
-  <!-- Botão Encerrar Ritual (Topo) -->
-  <button 
-    (click)="completeRitual()"
-    class="mb-6 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group">
-    <span class="text-2xl group-hover:scale-110 transition-transform">✨</span>
-    <span class="text-lg">Encerrar Ritual</span>
-    <span class="text-2xl group-hover:scale-110 transition-transform">🎉</span>
-  </button>
-  
-  <div class="flex flex-col items-center justify-center flex-1">
-    <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg text-center max-w-2xl">
-      <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-        🌊 Ciclo da Abundância
-      </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300">
-        Hello World - Ritual Mensal em Desenvolvimento
-      </p>
+  <!-- Introdução -->
+  <div class="mb-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 rounded-xl p-6 border-l-4 border-indigo-500">
+    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
+      <span>🌱</span>
+      <span>Olhar o que floresceu, o que secou e o que está brotando</span>
+    </h2>
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+      Um ritual mensal de <strong>1h30 a 2h</strong> para reflexão profunda, análise estratégica e planejamento intelectual. Momento de pensar à frente, ajustar o curso e tomar decisões que moldam o futuro.
+    </p>
+    <div class="flex flex-wrap gap-2 text-sm">
+      <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full">⏱️ 1h30-2h</span>
+      <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">🧠 Estratégico</span>
+      <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full">🎯 Visão de longo prazo</span>
     </div>
   </div>
 
-  <!-- Botão Encerrar Ritual (Final) -->
+  <!-- Citação Inspiradora -->
+  <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border-l-4 border-purple-400">
+    <p class="text-lg italic text-gray-700 dark:text-gray-300 mb-2">
+      "{{ randomPoem.text }}"
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 text-right">— {{ randomPoem.author }}</p>
+  </div>
+
+  <!-- Foco e Meta do Mês Anterior -->
+  @if (previousFocus() || previousGoal()) {
+    <div class="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-xl p-6 border-l-4 border-blue-500">
+      <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
+        <span>📋</span>
+        <span>Revisão do Mês Anterior</span>
+      </h3>
+      <div class="space-y-3">
+        @if (previousFocus()) {
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+            <p class="text-xs font-semibold text-blue-600 dark:text-blue-400 mb-1">FOCO DEFINIDO</p>
+            <p class="text-base text-gray-800 dark:text-gray-200 font-medium">{{ previousFocus() }}</p>
+          </div>
+        }
+        @if (previousGoal()) {
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+            <p class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 mb-1">META ESTABELECIDA</p>
+            <p class="text-base text-gray-800 dark:text-gray-200 font-medium">{{ previousGoal() }}</p>
+          </div>
+        }
+      </div>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mt-3 italic">
+        💡 Use essas informações durante a retrospectiva para avaliar o progresso
+      </p>
+    </div>
+  }
+
+  <!-- Jornada do Ritual -->
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+      <span>🗺️</span>
+      <span>Roteiro Completo</span>
+    </h2>
+
+    <!-- Progresso do Ritual -->
+    <div class="mb-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Progresso do Ritual</span>
+        <span class="text-sm font-bold text-purple-600 dark:text-purple-400">{{ completedSteps() }}/9 etapas</span>
+      </div>
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+        <div 
+          class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500 ease-out"
+          [style.width.%]="progressPercentage()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Etapa 1: Abertura -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-cyan-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(0)" class="w-5 h-5 text-cyan-600 rounded focus:ring-cyan-500 cursor-pointer">
+        <span class="text-2xl">🔰</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-cyan-700 dark:text-cyan-400">Abertura — Dar o Tom</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Reflexiva, criativa e colaborativa</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full">10 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-cyan-50 dark:bg-cyan-950/20 rounded-lg">
+          <span class="text-cyan-600 dark:text-cyan-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Mensagem simbólica ou inspiração (frase, imagem, poema, história de cliente)</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-cyan-50 dark:bg-cyan-950/20 rounded-lg">
+          <span class="text-cyan-600 dark:text-cyan-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Rodada rápida: "Como você se sentiu nesse mês com o trabalho?" (1 frase por pessoa)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 2: Retrospectiva -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-blue-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(1)" class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer">
+        <span class="text-2xl">📅</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-blue-700 dark:text-blue-400">Retrospectiva do Mês Anterior</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Entender o que foi alcançado, onde avançamos e onde travamos</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">15 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg border-l-2 border-green-400">
+          <span class="text-green-600 dark:text-green-400 text-lg mt-0.5">🟢</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que <strong>mais funcionou</strong> no mês passado?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg border-l-2 border-yellow-400">
+          <span class="text-yellow-600 dark:text-yellow-400 text-lg mt-0.5">🟡</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que aprendemos de valioso, <strong>mesmo com erros</strong>?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-red-50 dark:bg-red-950/20 rounded-lg border-l-2 border-red-400">
+          <span class="text-red-600 dark:text-red-400 text-lg mt-0.5">🔴</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Onde <strong>desperdiçamos energia</strong>? Qual meta ficou para trás e por quê?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 3: Financeiro -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-emerald-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(2)" class="w-5 h-5 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer">
+        <span class="text-2xl">💰</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-emerald-700 dark:text-emerald-400">Financeiro e Vendas</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Conectar esforço com resultado e tomar decisões baseadas em dados</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full">15 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/20 rounded-lg">
+          <span class="text-emerald-600 dark:text-emerald-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Faturamento total, custos estimados, lucro estimado</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/20 rounded-lg">
+          <span class="text-emerald-600 dark:text-emerald-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Estamos <strong>ganhando o suficiente</strong> pelo esforço?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/20 rounded-lg">
+          <span class="text-emerald-600 dark:text-emerald-400 text-lg mt-0.5">🎖️</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Ranking dos "Top 3 heróis do mês" (produtos que salvaram o caixa)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 4: Produção -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-orange-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(3)" class="w-5 h-5 text-orange-600 rounded focus:ring-orange-500 cursor-pointer">
+        <span class="text-2xl">🧱</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-orange-700 dark:text-orange-400">Produção e Operações</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Identificar gargalos e possibilidades de melhoria</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full">15 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg">
+          <span class="text-orange-600 dark:text-orange-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que <strong>atrasou a produção</strong>? Por quê?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg">
+          <span class="text-orange-600 dark:text-orange-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Onde teve <strong>retrabalho ou perda</strong>?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg">
+          <span class="text-orange-600 dark:text-orange-400 text-lg mt-0.5">💡</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Cada um propõe <strong>1 melhoria simples</strong> para facilitar a rotina</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 5: Marketing -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-pink-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(4)" class="w-5 h-5 text-pink-600 rounded focus:ring-pink-500 cursor-pointer">
+        <span class="text-2xl">📣</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-pink-700 dark:text-pink-400">Marketing e Alcance</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Entender o impacto das ações de divulgação</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full">10 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-pink-50 dark:bg-pink-950/20 rounded-lg">
+          <span class="text-pink-600 dark:text-pink-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Qual postagem <strong>mais engajou</strong>? Qual feira teve <strong>mais retorno</strong>?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-pink-50 dark:bg-pink-950/20 rounded-lg">
+          <span class="text-pink-600 dark:text-pink-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que podemos <strong>testar no próximo mês</strong>? (reels, bastidores, parceria)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 6: Equipe -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-violet-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(5)" class="w-5 h-5 text-violet-600 rounded focus:ring-violet-500 cursor-pointer">
+        <span class="text-2xl">💬</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-violet-700 dark:text-violet-400">Equipe e Clima</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Refletir sobre colaboração, cansaço e motivação</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full">10 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-violet-50 dark:bg-violet-950/20 rounded-lg">
+          <span class="text-violet-600 dark:text-violet-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Houve momento de <strong>sobrecarga</strong>?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-violet-50 dark:bg-violet-950/20 rounded-lg">
+          <span class="text-violet-600 dark:text-violet-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que <strong>motivou ou energizou</strong> no mês?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-violet-50 dark:bg-violet-950/20 rounded-lg">
+          <span class="text-violet-600 dark:text-violet-400 text-lg mt-0.5">🧠</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Rodada "Se eu fosse um emoji nesse mês, seria..." 😫 😎 😂 🙃</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 7: Inovações -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-amber-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(6)" class="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 cursor-pointer">
+        <span class="text-2xl">💡</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-amber-700 dark:text-amber-400">Novas Ideias e Inovações</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Nutrir o futuro com criatividade prática</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full">10 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg">
+          <span class="text-amber-600 dark:text-amber-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Surgiu alguma <strong>ideia de produto</strong>?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg">
+          <span class="text-amber-600 dark:text-amber-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Alguém quer aprender alguma <strong>técnica nova</strong>?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg">
+          <span class="text-amber-600 dark:text-amber-400 text-lg mt-0.5">🌱</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Registrar no <strong>caderno de "sementes"</strong> — mesmo as ideias que não serão usadas agora</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 8: Planejamento -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-indigo-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(7)" class="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 cursor-pointer">
+        <span class="text-2xl">🎯</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-indigo-700 dark:text-indigo-400">Planejamento do Próximo Mês</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Definir foco, evitar dispersão e alinhar ações</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full">15 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+          <span class="text-indigo-600 dark:text-indigo-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que vamos <strong>manter, melhorar e parar</strong> de fazer?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+          <span class="text-indigo-600 dark:text-indigo-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Quais são as <strong>prioridades claras</strong>?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+          <span class="text-indigo-600 dark:text-indigo-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Quais <strong>feiras ou eventos</strong> estão no radar?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+          <span class="text-indigo-600 dark:text-indigo-400 text-lg mt-0.5">👉</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Quadro: <strong>Fazer | Aprimorar | Parar | Testar</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg p-2">
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full transition-all duration-500" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
+
+    <!-- Etapa 9: Fechamento -->
+    <div class="mb-3 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md border-l-4 border-purple-500">
+      <div class="flex items-center gap-3 mb-2">
+        <input type="checkbox" (change)="toggleStep(8)" class="w-5 h-5 text-purple-600 rounded focus:ring-purple-500 cursor-pointer">
+        <span class="text-2xl">🧭</span>
+        <div class="flex-1">
+          <h3 class="text-base font-bold text-purple-700 dark:text-purple-400">Fechamento — Bússola do Mês</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 font-medium">Encerrar com inspiração e clareza</p>
+        </div>
+        <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full">5-10 min</span>
+      </div>
+      <div class="space-y-2 ml-12">
+        <div class="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
+          <span class="text-purple-600 dark:text-purple-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">O que mais te <strong>inspira</strong> para o próximo mês?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
+          <span class="text-purple-600 dark:text-purple-400 text-lg mt-0.5">•</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Qual <strong>palavra ou intenção</strong> quer levar?</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
+          <span class="text-purple-600 dark:text-purple-400 text-lg mt-0.5">🧭</span>
+          <span class="text-base text-gray-800 dark:text-gray-200 font-medium">Criar juntos a <strong>"bússola do mês"</strong>: 1 palavra + 1 imagem + 1 compromisso simples</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefícios de Reunião Estratégica -->
+  <div class="mb-6 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-xl p-6 shadow-xl text-white">
+    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+      <span>✨</span>
+      <span>Benefícios de Reunião Estratégica</span>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">🎯</span>
+        <div>
+          <strong>Clareza de Direção</strong>
+          <p class="text-sm text-white/90">Todos sabem para onde estamos indo e por quê</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">📊</span>
+        <div>
+          <strong>Decisões Baseadas em Dados</strong>
+          <p class="text-sm text-white/90">Menos achismo, mais evidências concretas</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">🌱</span>
+        <div>
+          <strong>Inovação Sustentável</strong>
+          <p class="text-sm text-white/90">Espaço protegido para experimentar e evoluir</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">🤝</span>
+        <div>
+          <strong>Alinhamento da Equipe</strong>
+          <p class="text-sm text-white/90">Todos remando na mesma direção</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Troubleshooting -->
+  <div class="mb-6">
+    <button 
+      (click)="toggleTroubleshooting()"
+      class="w-full bg-amber-50 dark:bg-amber-950/30 hover:bg-amber-100 dark:hover:bg-amber-950/50 rounded-xl p-4 shadow-md transition-all duration-300 flex items-center justify-between border-2 border-amber-200 dark:border-amber-800">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🆘</span>
+        <div class="text-left">
+          <h3 class="text-base font-bold text-amber-700 dark:text-amber-400">Desafios Estratégicos?</h3>
+          <p class="text-xs text-gray-600 dark:text-gray-400">Soluções para obstáculos de longo prazo</p>
+        </div>
+      </div>
+      <span class="text-2xl text-amber-600 dark:text-amber-400 transition-transform" [class.rotate-180]="showTroubleshooting()">
+        ▼
+      </span>
+    </button>
+
+    @if (showTroubleshooting()) {
+      <div class="mt-3 grid md:grid-cols-2 gap-3">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-red-400">
+          <h4 class="text-sm font-bold text-red-700 dark:text-red-400 mb-2">📊 Decisões baseadas em achismos</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Implemente métricas simples. Registre dados mensais. Use planilha básica para rastrear tendências.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Data-driven decision making</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-orange-400">
+          <h4 class="text-sm font-bold text-orange-700 dark:text-orange-400 mb-2">🔄 Sempre apagando incêndios</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Separe urgente de importante. Reserve 20% do tempo para planejamento preventivo. Identifique padrões recorrentes.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Matriz de Eisenhower</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-yellow-400">
+          <h4 class="text-sm font-bold text-yellow-700 dark:text-yellow-400 mb-2">💰 Lucro não reflete esforço</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Calcule custo real por produto (tempo + material + overhead). Elimine ou reprecie produtos deficitários.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Análise de margem de contribuição</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-green-400">
+          <h4 class="text-sm font-bold text-green-700 dark:text-green-400 mb-2">🎯 Falta de foco estratégico</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Defina 3 objetivos máximos por trimestre. Diga "não" para oportunidades que dispersam energia. Revise mensalmente.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: OKRs simplificados</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-blue-400">
+          <h4 class="text-sm font-bold text-blue-700 dark:text-blue-400 mb-2">🔍 Não sabemos o que funciona</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Teste uma variável por vez. Documente resultados. Compare períodos semelhantes. Aprenda com dados, não intuição.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Experimentação controlada</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-indigo-400">
+          <h4 class="text-sm font-bold text-indigo-700 dark:text-indigo-400 mb-2">🌱 Inovação vs. Operação</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Reserve tempo fixo para experimentação (10-15%). Proteja esse espaço. Inovação incremental é válida.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Regra 70-20-10 (Google)</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-purple-400">
+          <h4 class="text-sm font-bold text-purple-700 dark:text-purple-400 mb-2">😓 Burnout da equipe</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Monitore carga de trabalho. Celebre conquistas. Crie pausas estratégicas. Burnout destrói criatividade.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Gestão de energia (não tempo)</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border-l-2 border-pink-400">
+          <h4 class="text-sm font-bold text-pink-700 dark:text-pink-400 mb-2">🗣️ Alguém monopoliza a conversa</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400 mb-2">Use "bastão da palavra" ou timer por pessoa. Facilitador redireciona gentilmente. Valorize todas as vozes.</p>
+          <p class="text-xs italic text-gray-500 dark:text-gray-500">Ref: Facilitação inclusiva</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Call to Action -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center mb-6">
+    <p class="text-lg font-medium text-gray-800 dark:text-white mb-2">
+      Pronto para o Ciclo da Abundância?
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 italic">
+      "Quando olhamos as raízes com clareza, os frutos se manifestam naturalmente"
+    </p>
+  </div>
+
+  <!-- Definição de Foco e Meta -->
+  <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+      <span>🎯</span>
+      <span>Defina o Foco e a Meta do Mês</span>
+    </h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      Antes de encerrar, registre o principal foco e a meta mensurável para o próximo mês.
+    </p>
+
+    @if (previousFocus() || previousGoal()) {
+      <div class="mb-4 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border-l-2 border-blue-400">
+        <p class="text-sm font-semibold text-blue-700 dark:text-blue-400 mb-2">📋 Revisão do Compromisso Anterior</p>
+        @if (previousFocus()) {
+          <div class="mb-2">
+            <p class="text-xs font-medium text-blue-600 dark:text-blue-400">Foco:</p>
+            <p class="text-sm text-gray-800 dark:text-gray-200">{{ previousFocus() }}</p>
+          </div>
+        }
+        @if (previousGoal()) {
+          <div>
+            <p class="text-xs font-medium text-blue-600 dark:text-blue-400">Meta:</p>
+            <p class="text-sm text-gray-800 dark:text-gray-200">{{ previousGoal() }}</p>
+          </div>
+        }
+        <p class="text-xs text-gray-600 dark:text-gray-400 mt-2 italic">Conseguimos alcançar? O que aprendemos?</p>
+      </div>
+    }
+
+    @if (previousFocus() || previousGoal()) {
+      <div class="flex justify-center mb-4">
+        <button
+          type="button"
+          (click)="usePreviousData()"
+          class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-medium rounded-lg transition-all duration-200 flex items-center gap-2 border-2 border-blue-300 dark:border-blue-700">
+          <span>🔄</span>
+          <span>Utilizar Mesmo Foco e Meta</span>
+        </button>
+      </div>
+    }
+    
+    <div class="space-y-4">
+      <div>
+        <label for="monthlyFocus" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <span class="text-red-500">*</span> Foco Principal do Mês
+        </label>
+        <input
+          type="text"
+          id="monthlyFocus"
+          [value]="monthlyFocus()"
+          (input)="monthlyFocus.set($any($event.target).value)"
+          placeholder="Ex: Aumentar presença em feiras, Otimizar produção, Lançar nova linha..."
+          class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 transition-all"
+          required>
+      </div>
+      
+      <div>
+        <label for="monthlyGoal" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <span class="text-red-500">*</span> Meta Mensurável
+        </label>
+        <input
+          type="text"
+          id="monthlyGoal"
+          [value]="monthlyGoal()"
+          (input)="monthlyGoal.set($any($event.target).value)"
+          placeholder="Ex: Participar de 4 feiras, Reduzir desperdício em 20%, Criar 5 novos produtos..."
+          class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 transition-all"
+          required>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão Encerrar Ritual -->
   <button 
     (click)="completeRitual()"
-    class="mb-6 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group">
+    [disabled]="!canComplete"
+    [class.opacity-50]="!canComplete"
+    [class.cursor-not-allowed]="!canComplete"
+    class="mb-6 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group disabled:hover:from-green-500 disabled:hover:to-emerald-600">
     <span class="text-2xl group-hover:scale-110 transition-transform">✨</span>
-    <span class="text-lg">Encerrar Ritual</span>
+    <span class="text-lg">{{ canComplete ? 'Encerrar Ritual' : 'Preencha Foco e Meta para Encerrar' }}</span>
     <span class="text-2xl group-hover:scale-110 transition-transform">🎉</span>
   </button>
 </div>

@@ -57,14 +57,32 @@ export class QuantumActivitiesComponent {
   ];
 
   readonly completedActivities = signal<Set<string>>(this.loadCompletedActivities());
+  readonly monthlyFocus = signal<string | null>(null);
+  readonly monthlyGoal = signal<string | null>(null);
 
   // Atualiza a cada minuto para verificar se alguma atividade deve reaparecer
   constructor() {
+    this.loadMonthlyData();
     setInterval(() => this.now.set(new Date()), 60000);
     effect(() => {
       this.now();
       this.checkAndResetActivities();
     });
+  }
+
+  private loadMonthlyData() {
+    const stored = localStorage.getItem('quantum-activities');
+    if (stored) {
+      try {
+        const data = JSON.parse(stored);
+        if (data['monthly'] && typeof data['monthly'] === 'object') {
+          this.monthlyFocus.set(data['monthly'].focus || null);
+          this.monthlyGoal.set(data['monthly'].goal || null);
+        }
+      } catch {
+        // Ignore errors
+      }
+    }
   }
 
   get visibleActivities() {
@@ -91,7 +109,9 @@ export class QuantumActivitiesComponent {
     try {
       const data = JSON.parse(stored);
       return new Set(Object.keys(data).filter(key => {
-        const timestamp = data[key];
+        const value = data[key];
+        // Se for objeto (novo formato com focus/goal), pega o timestamp
+        const timestamp = typeof value === 'object' ? value.timestamp : value;
         return this.isStillValid(key, timestamp);
       }));
     } catch {
@@ -145,11 +165,13 @@ export class QuantumActivitiesComponent {
 
     try {
       const data = JSON.parse(stored);
-      const updated: Record<string, number> = {};
+      const updated: Record<string, any> = {};
       let hasChanges = false;
 
       Object.keys(data).forEach(key => {
-        if (this.isStillValid(key, data[key])) {
+        const value = data[key];
+        const timestamp = typeof value === 'object' ? value.timestamp : value;
+        if (this.isStillValid(key, timestamp)) {
           updated[key] = data[key];
         } else {
           hasChanges = true;
