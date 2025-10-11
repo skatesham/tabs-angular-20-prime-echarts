@@ -7,11 +7,12 @@ import { GoalFocusComponent } from '../../../../shared/ui/goal-focus/goal-focus.
 import { DailyTasksComponent } from '../../../../shared/ui/daily-tasks/daily-tasks.component';
 import { DailyProgressChartComponent } from '../../../../shared/ui/daily-progress-chart/daily-progress-chart.component';
 import { DailyMotivationComponent } from '../../../../shared/ui/daily-motivation/daily-motivation.component';
+import { MissionVisionValuesComponent } from '../../../../shared/ui/mission-vision-values/mission-vision-values.component';
 
 @Component({
   selector: 'f-tabs-home-page',
   standalone: true,
-  imports: [CommonModule, QuantumActivitiesComponent, WelcomeCardComponent, GoalFocusComponent, DailyTasksComponent, DailyProgressChartComponent, DailyMotivationComponent],
+  imports: [CommonModule, QuantumActivitiesComponent, WelcomeCardComponent, GoalFocusComponent, DailyTasksComponent, DailyProgressChartComponent, DailyMotivationComponent, MissionVisionValuesComponent],
   templateUrl: './home.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
