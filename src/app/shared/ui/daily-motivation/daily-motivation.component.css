@@ -1,0 +1,84 @@
+:host {
+  display: block;
+}
+
+blockquote {
+  position: relative;
+  padding: 0 1rem;
+}
+
+blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  left: -1rem;
+  top: -1rem;
+  opacity: 0.2;
+}
+
+blockquote::after {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  right: -1rem;
+  bottom: -2rem;
+  opacity: 0.2;
+}
+
+/* Mandala com aura 528 Hz - Frequência do Amor/Motivação */
+.mandala-container {
+  position: relative;
+  display: inline-block;
+}
+
+.mandala-container img {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 1.5rem rgba(92, 213, 152, 0.6)) 
+          drop-shadow(0 0 3rem rgba(142, 255, 184, 0.4));
+  animation: mandala-glow 4s ease-in-out infinite;
+}
+
+/* Aura de fundo com gradiente de frequência 528 Hz */
+.mandala-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(92, 213, 152, 0.3) 0%,
+    rgba(142, 255, 184, 0.2) 30%,
+    rgba(34, 197, 94, 0.1) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  animation: aura-pulse 3s ease-in-out infinite;
+}
+
+@keyframes mandala-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 1.5rem rgba(92, 213, 152, 0.6)) 
+            drop-shadow(0 0 3rem rgba(142, 255, 184, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 2rem rgba(92, 213, 152, 0.8)) 
+            drop-shadow(0 0 4rem rgba(142, 255, 184, 0.6))
+            drop-shadow(0 0 6rem rgba(34, 197, 94, 0.3));
+  }
+}
+
+@keyframes aura-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+}

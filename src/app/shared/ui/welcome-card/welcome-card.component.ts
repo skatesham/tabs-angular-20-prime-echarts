@@ -30,13 +30,13 @@ export class WelcomeCardComponent {
 
   get dayTheme() {
     const themes = [
-      { name: 'Recarga', description: 'Descanso estratégico para a semana que vem', icon: '🔋' },
-      { name: 'Impulso', description: 'Planeje, priorize e inicie com energia', icon: '⚡' },
-      { name: 'Foco', description: 'Mergulhe profundo nas tarefas mais importantes', icon: '🎯' },
-      { name: 'Revisão', description: 'Ajuste a rota e otimize processos', icon: '🔄' },
-      { name: 'Execução', description: 'Finalize entregas e gere resultados concretos', icon: '✅' },
-      { name: 'Colheita', description: 'Celebre conquistas e feche ciclos', icon: '🌟' },
-      { name: 'Reflexão', description: 'Avalie a semana e prepare o próximo nível', icon: '📊' }
+      { name: 'Recarga', description: 'Energia se renova, possibilidades se expandem', icon: '🌙' },
+      { name: 'Impulso', description: 'Movimento inicial que cria momentum infinito', icon: '🚀' },
+      { name: 'Foco', description: 'Atenção concentrada manifesta realidades', icon: '⚛️' },
+      { name: 'Revisão', description: 'Observar transforma o que está em potencial', icon: '🔮' },
+      { name: 'Execução', description: 'Ação colapsa ondas em resultados tangíveis', icon: '💫' },
+      { name: 'Colheita', description: 'Reconhecer conquistas amplifica frequências', icon: '✨' },
+      { name: 'Reflexão', description: 'Consciência expande o campo de possibilidades', icon: '🌌' }
     ];
     return themes[this.now().getDay()];
   }

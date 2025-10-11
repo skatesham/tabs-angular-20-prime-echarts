@@ -1,0 +1,10 @@
+<p-card class="shadow-sm">
+  <ng-template pTemplate="header">
+    <div class="px-6 pt-6 pb-2">
+      <h3 class="text-xl font-semibold dark:text-white mb-1">Progresso Diário</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400">Evolução das suas tarefas nos últimos 7 dias</p>
+    </div>
+  </ng-template>
+
+  <div echarts [options]="chartOption()" class="w-full h-64"></div>
+</p-card>
