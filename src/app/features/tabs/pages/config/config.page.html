@@ -1,59 +1,168 @@
 <div class="flex flex-col h-full p-4 overflow-auto bg-gray-50 dark:bg-gray-900">
-  <h1 class="text-2xl font-bold mb-6 dark:text-white">Configurações</h1>
+  <p-page-header 
+    icon="⚙️"
+    title="Configurações" 
+    subtitle="Personalize seu ateliê criativo">
+  </p-page-header>
 
-  <p-accordion [multiple]="true" class="w-full">
-    <!-- Diário -->
-    <p-accordionpanel value="0">
-      <p-accordionheader>Diário</p-accordionheader>
-      <p-accordioncontent>
-        <div class="p-4">
-          <p class="text-gray-700 dark:text-gray-300">Hello World</p>
+  <!-- Missão, Visão e Valores -->
+  <div class="mb-6">
+    <p-mission-vision-values></p-mission-vision-values>
+  </div>
+
+  <!-- Formulário de Edição -->
+  <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+      <span>✏️</span>
+      <span>Editar Missão, Visão e Valores</span>
+    </h2>
+
+    <div class="space-y-4">
+      <!-- Missão -->
+      <div>
+        <label for="mission" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          🎯 Missão <span class="text-red-500">*</span>
+        </label>
+        <textarea
+          pTextarea
+          id="mission"
+          [value]="mission()"
+          (input)="mission.set($any($event.target).value)"
+          rows="3"
+          class="w-full"
+          placeholder="Descreva a missão do seu ateliê..."
+        ></textarea>
+        @if (mission().trim().length === 0) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mt-1 flex items-center gap-1">
+            <span>⚠️</span>
+            <span>Campo obrigatório</span>
+          </p>
+        }
+      </div>
+
+      <!-- Visão -->
+      <div>
+        <label for="vision" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          ✨ Visão <span class="text-red-500">*</span>
+        </label>
+        <textarea
+          pTextarea
+          id="vision"
+          [value]="vision()"
+          (input)="vision.set($any($event.target).value)"
+          rows="3"
+          class="w-full"
+          placeholder="Descreva a visão do seu ateliê..."
+        ></textarea>
+        @if (vision().trim().length === 0) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mt-1 flex items-center gap-1">
+            <span>⚠️</span>
+            <span>Campo obrigatório</span>
+          </p>
+        }
+      </div>
+
+      <!-- Valores -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+            💎 Valores
+          </label>
+          @if (values().length > 0) {
+            <button
+              pButton
+              label="Limpar Todos"
+              icon="pi pi-times"
+              (click)="clearAllValues()"
+              class="p-button-text p-button-sm p-button-danger"
+              type="button"
+            ></button>
+          }
         </div>
-      </p-accordioncontent>
-    </p-accordionpanel>
+        
+        <!-- Lista de valores -->
+        @if (values().length > 0) {
+          <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            @for (value of values(); track $index) {
+              <div class="flex items-center gap-3 p-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
+                <span class="text-green-500 dark:text-green-400">•</span>
+                <span class="flex-1 text-sm text-gray-800 dark:text-gray-200">{{ value }}</span>
+                <button
+                  (click)="removeValue($index)"
+                  class="px-3 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-colors border border-red-300 dark:border-red-700 hover:border-red-500 dark:hover:border-red-500"
+                  type="button"
+                  [title]="'Remover: ' + value"
+                >❌</button>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="mb-3 p-4 text-center text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600">
+            Nenhum valor adicionado ainda
+          </div>
+        }
+        
+        @if (values().length < 3) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-1">
+            <span>⚠️</span>
+            <span>Mínimo de 3 valores para salvar</span>
+          </p>
+        }
 
-    <!-- Semanal -->
-    <p-accordionpanel value="1">
-      <p-accordionheader>Semanal</p-accordionheader>
-      <p-accordioncontent>
-        <div class="flex flex-col gap-3 p-4">
-          <textarea
-            pTextarea
-            [(ngModel)]="semanalText"
-            rows="5"
-            class="w-full"
-            placeholder="Digite suas anotações semanais..."
-          ></textarea>
+        <!-- Adicionar novo valor -->
+        <div class="flex gap-2">
+          <input
+            pInputText
+            [value]="newValue()"
+            (input)="newValue.set($any($event.target).value)"
+            (keyup.enter)="addValue()"
+            placeholder="Digite um novo valor e pressione Enter..."
+            class="flex-1"
+          />
           <button
             pButton
-            label="Finalizar"
-            (click)="finalizarSemanal()"
-            class="w-full"
+            label="Adicionar"
+            icon="pi pi-plus"
+            (click)="addValue()"
+            [disabled]="!newValue().trim()"
+            type="button"
           ></button>
         </div>
-      </p-accordioncontent>
-    </p-accordionpanel>
+      </div>
 
-    <!-- Mensal -->
-    <p-accordionpanel value="2">
-      <p-accordionheader>Mensal</p-accordionheader>
-      <p-accordioncontent>
-        <div class="flex flex-col gap-3 p-4">
-          <textarea
-            pTextarea
-            [(ngModel)]="mensalText"
-            rows="5"
-            class="w-full"
-            placeholder="Digite suas anotações mensais..."
-          ></textarea>
+      <!-- Botões de Ação -->
+      <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+        @if (!canSave) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-1">
+            <span>ℹ️</span>
+            <span>Preencha todos os campos obrigatórios</span>
+          </p>
+        }
+        <div class="flex justify-end items-center gap-2">
           <button
             pButton
-            label="Finalizar"
-            (click)="finalizarMensal()"
-            class="w-full"
+            label="Cancelar"
+            (click)="cancelChanges()"
+            class="p-button-outlined p-button-secondary"
+            type="button"
+          ></button>
+          <button
+            pButton
+            label="Limpar"
+            (click)="clearAll()"
+            class="p-button-outlined p-button-danger"
+            type="button"
+          ></button>
+          <button
+            pButton
+            label="Salvar"
+            (click)="saveMissionVisionValues()"
+            [disabled]="!canSave"
+            class="p-button-success"
           ></button>
         </div>
-      </p-accordioncontent>
-    </p-accordionpanel>
-  </p-accordion>
+      </div>
+    </div>
+  </div>
+
 </div>

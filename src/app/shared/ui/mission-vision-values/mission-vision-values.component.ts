@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 
 interface Pillar {
@@ -17,7 +17,9 @@ interface Pillar {
   styleUrls: ['./mission-vision-values.component.css']
 })
 export class MissionVisionValuesComponent {
-  readonly pillars: Pillar[] = [
+  readonly pillars = signal<Pillar[]>([]);
+
+  private readonly defaultPillars: Pillar[] = [
     {
       icon: '🎯',
       title: 'Missão',
@@ -45,4 +47,27 @@ export class MissionVisionValuesComponent {
       color: 'text-green-600 dark:text-green-400'
     }
   ];
+
+  constructor() {
+    this.loadFromStorage();
+  }
+
+  private loadFromStorage() {
+    const stored = localStorage.getItem('mission-vision-values');
+    if (stored) {
+      try {
+        const data = JSON.parse(stored);
+        this.pillars.set(data);
+      } catch {
+        this.setDefaults();
+      }
+    } else {
+      this.setDefaults();
+    }
+  }
+
+  private setDefaults() {
+    this.pillars.set(this.defaultPillars);
+    localStorage.setItem('mission-vision-values', JSON.stringify(this.defaultPillars));
+  }
 }
