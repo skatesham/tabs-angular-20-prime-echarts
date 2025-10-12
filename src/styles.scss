@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
+@use "tailwindcss";
 @plugin "tailwindcss-primeui";
 
 /* 
@@ -59,50 +59,10 @@
   --shadow-xl: 0 20px 25px -5px rgba(16, 185, 129, 0.25), 0 10px 10px -5px rgba(16, 185, 129, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode - Profundo com Acentos Neon */
-    --color-bg-page: linear-gradient(135deg, #0a0f14 0%, #0f1419 50%, #1a1f2e 100%);
-    --color-bg-page-solid: #0f1419;
-    --color-bg-card: linear-gradient(145deg, #1a2332 0%, #1f2937 100%);
-    --color-bg-card-solid: #1a2332;
-    --color-bg-card-hover: linear-gradient(145deg, #1f2937 0%, #243447 100%);
-    --color-border: #374151;
-    --color-border-accent: #4b5563;
-    
-    /* Textos - Neon e Vibrante */
-    --color-text-primary: #8effb8;       /* Verde neon para títulos */
-    --color-text-secondary: #6ee7b7;     /* Verde claro para subtítulos */
-    --color-text-tertiary: #34d399;      /* Verde médio para destaques */
-    --color-text-body: #d1d5db;          /* Cinza claro suave */
-    --color-text-muted: #9ca3af;         /* Cinza médio */
-    
-    /* Acentos Brilhantes */
-    --color-accent-primary: #34d399;
-    --color-accent-secondary: #6ee7b7;
-    --color-accent-tertiary: #8effb8;
-    --color-accent-hover: #10b981;
-    
-    /* Gradientes Neon */
-    --gradient-primary: linear-gradient(135deg, #34d399 0%, #6ee7b7 50%, #8effb8 100%);
-    --gradient-secondary: linear-gradient(135deg, #8effb8 0%, #a7f3d0 50%, #6ee7b7 100%);
-    --gradient-accent: linear-gradient(90deg, #34d399 0%, #10b981 100%);
-    
-    /* Sombras Brilhantes */
-    --shadow-sm: 0 1px 2px 0 rgba(142, 255, 184, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(142, 255, 184, 0.2), 0 2px 4px -1px rgba(142, 255, 184, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(142, 255, 184, 0.3), 0 4px 6px -2px rgba(142, 255, 184, 0.2);
-    --shadow-xl: 0 20px 25px -5px rgba(142, 255, 184, 0.4), 0 10px 10px -5px rgba(142, 255, 184, 0.2);
-  }
-}
-
-.dark {
-  /* Dark Mode via classe */
-  --color-bg-page: linear-gradient(135deg, #0a0f14 0%, #0f1419 50%, #1a1f2e 100%);
+/* SCSS Mixin - Dark Mode (elimina duplicação) */
+@mixin dark-mode-vars {
   --color-bg-page-solid: #0f1419;
-  --color-bg-card: linear-gradient(145deg, #1a2332 0%, #1f2937 100%);
   --color-bg-card-solid: #1a2332;
-  --color-bg-card-hover: linear-gradient(145deg, #1f2937 0%, #243447 100%);
   --color-border: #374151;
   --color-border-accent: #4b5563;
   --color-text-primary: #8effb8;
@@ -122,6 +82,12 @@
   --shadow-lg: 0 10px 15px -3px rgba(142, 255, 184, 0.3), 0 4px 6px -2px rgba(142, 255, 184, 0.2);
   --shadow-xl: 0 20px 25px -5px rgba(142, 255, 184, 0.4), 0 10px 10px -5px rgba(142, 255, 184, 0.2);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root { @include dark-mode-vars; }
+}
+
+.dark { @include dark-mode-vars; }
 
 /* 
   Regra UX de Backgrounds:
@@ -165,7 +131,7 @@ body {
   overflow: hidden;
 }
 
-/* Dark Mode - Cards mais escuros mas ainda semi-transparentes */
+/* Dark Mode - Cards mais escuros */
 @media (prefers-color-scheme: dark) {
   .p-card {
     background: rgba(26, 35, 50, 0.75) !important;
