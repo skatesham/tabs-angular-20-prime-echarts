@@ -1,73 +1,85 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
-
-interface Pillar {
-  icon: string;
-  title: string;
-  description?: string;
-  values?: string[];
-  color: string;
-}
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { MissionVisionValuesService } from '../../../core/services/mission-vision-values.service';
+import { type Pillar } from '../../../data/constants';
 
 @Component({
   selector: 'p-mission-vision-values',
   standalone: true,
-  imports: [CardModule],
+  imports: [CardModule, ButtonModule, InputTextModule, FormsModule],
   templateUrl: './mission-vision-values.component.html',
   styleUrls: ['./mission-vision-values.component.css']
 })
 export class MissionVisionValuesComponent {
+  private readonly service = inject(MissionVisionValuesService);
+  
   readonly pillars = signal<Pillar[]>([]);
-
-  private readonly defaultPillars: Pillar[] = [
-    {
-      icon: '🎯',
-      title: 'Missão',
-      description: 'Criar e entregar produtos artísticos inovadores que conectam arte, espiritualidade e funcionalidade, transformando energia criativa em objetos únicos que elevam a consciência e inspiram transformação pessoal.',
-      color: 'text-blue-600 dark:text-blue-400'
-    },
-    {
-      icon: '✨',
-      title: 'Visão',
-      description: 'Ser referência em criação xamânica contemporânea, integrando técnicas ancestrais com inovação artística, expandindo fronteiras criativas e estabelecendo um ateliê onde cada peça carrega intenção, beleza e propósito.',
-      color: 'text-purple-600 dark:text-purple-400'
-    },
-    {
-      icon: '💎',
-      title: 'Valores',
-      values: [
-        'Autenticidade criativa',
-        'Excelência artesanal',
-        'Consciência espiritual',
-        'Inovação constante',
-        'Ciclos naturais',
-        'Integridade',
-        'Sustentabilidade'
-      ],
-      color: 'text-green-600 dark:text-green-400'
-    }
-  ];
+  readonly isEditMode = signal(false);
+  readonly mission = signal('');
+  readonly vision = signal('');
+  readonly values = signal<string[]>([]);
+  readonly newValue = signal('');
 
   constructor() {
-    this.loadFromStorage();
+    this.pillars.set(this.service.load());
   }
 
-  private loadFromStorage() {
-    const stored = localStorage.getItem('mission-vision-values');
-    if (stored) {
-      try {
-        const data = JSON.parse(stored);
-        this.pillars.set(data);
-      } catch {
-        this.setDefaults();
-      }
+  toggleEditMode() {
+    if (this.isEditMode()) {
+      // Cancelar edição
+      this.isEditMode.set(false);
     } else {
-      this.setDefaults();
+      // Entrar em modo de edição
+      const currentPillars = this.pillars();
+      this.mission.set(currentPillars[0]?.description || '');
+      this.vision.set(currentPillars[1]?.description || '');
+      this.values.set([...(currentPillars[2]?.values || [])]);
+      this.isEditMode.set(true);
     }
   }
 
-  private setDefaults() {
-    this.pillars.set(this.defaultPillars);
-    localStorage.setItem('mission-vision-values', JSON.stringify(this.defaultPillars));
+  addValue() {
+    const value = this.newValue().trim();
+    if (value) {
+      this.values.set([...this.values(), value]);
+      this.newValue.set('');
+    }
+  }
+
+  removeValue(index: number) {
+    const updated = [...this.values()];
+    updated.splice(index, 1);
+    this.values.set(updated);
+  }
+
+  clearAllValues() {
+    this.values.set([]);
+  }
+
+  get canSave(): boolean {
+    return this.mission().trim().length > 0 &&
+           this.vision().trim().length > 0 &&
+           this.values().length >= 3;
+  }
+
+  saveChanges() {
+    if (!this.canSave) return;
+
+    const updatedPillars = this.service.createPillarsFromForm(
+      this.mission(),
+      this.vision(),
+      this.values()
+    );
+
+    this.service.save(updatedPillars);
+    this.pillars.set(updatedPillars);
+    this.isEditMode.set(false);
+  }
+
+  cancelEdit() {
+    this.isEditMode.set(false);
   }
 }

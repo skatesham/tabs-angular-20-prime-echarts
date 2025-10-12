@@ -1,12 +1,22 @@
-<p-card class="shadow-sm">
-  <ng-template pTemplate="header">
-    <div class="px-6 pt-6 pb-2">
-      <h3 class="text-xl font-semibold dark:text-white mb-1">Nosso Propósito</h3>
-      <p class="text-sm text-gray-600 dark:text-gray-400">Fundamentos do ateliê criativo</p>
-    </div>
-  </ng-template>
+@if (!isEditMode()) {
+  <p-card class="shadow-sm">
+    <ng-template pTemplate="header">
+      <div class="px-6 pt-6 pb-2 flex items-start justify-between gap-4">
+        <div class="flex-1">
+          <h3 class="text-xl font-semibold dark:text-white mb-1">Nosso Propósito</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Fundamentos do ateliê criativo</p>
+        </div>
+        <button
+          (click)="toggleEditMode()"
+          class="flex items-center gap-2 px-3 py-2 rounded-lg transition-all hover:bg-gray-100 dark:hover:bg-gray-700"
+          title="Editar propósito"
+        >
+          <span class="text-lg">✏</span>
+        </button>
+      </div>
+    </ng-template>
 
-  <div class="grid gap-6 md:grid-cols-3 p-4">
+    <div class="grid gap-6 md:grid-cols-3 p-4">
     @for (pillar of pillars(); track pillar.title) {
       <div class="pillar-card flex flex-col items-center text-center gap-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:shadow-md transition-shadow">
         <div class="pillar-icon text-5xl">
@@ -34,5 +44,157 @@
         }
       </div>
     }
+    </div>
+  </p-card>
+} @else {
+  <!-- Modo de Edição (sem card para não duplicar contexto) -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Editar Propósito</h3>
+      <button
+        (click)="toggleEditMode()"
+        class="flex items-center gap-2 px-3 py-2 rounded-lg transition-all hover:bg-red-100 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400"
+        title="Cancelar edição"
+      >
+        <span class="text-lg">✖</span>
+        <span class="text-sm font-medium">Cancelar</span>
+      </button>
+    </div>
+    
+    <div class="space-y-4">
+      <!-- Missão -->
+      <div>
+        <label for="mission-edit" class="block text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          🎯 Missão <span class="text-red-500">*</span>
+        </label>
+        <textarea
+          id="mission-edit"
+          [(ngModel)]="mission"
+          rows="6"
+          class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Descreva a missão do seu ateliê..."
+        ></textarea>
+        @if (mission().trim().length === 0) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mt-1 flex items-center gap-1">
+            <span>⚠️</span>
+            <span>Campo obrigatório</span>
+          </p>
+        }
+      </div>
+
+      <!-- Visão -->
+      <div>
+        <label for="vision-edit" class="block text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          ✨ Visão <span class="text-red-500">*</span>
+        </label>
+        <textarea
+          id="vision-edit"
+          [(ngModel)]="vision"
+          rows="6"
+          class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          placeholder="Descreva a visão do seu ateliê..."
+        ></textarea>
+        @if (vision().trim().length === 0) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mt-1 flex items-center gap-1">
+            <span>⚠️</span>
+            <span>Campo obrigatório</span>
+          </p>
+        }
+      </div>
+
+      <!-- Valores -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <label class="text-base font-semibold text-gray-700 dark:text-gray-300">
+            💎 Valores <span class="text-red-500">*</span>
+          </label>
+          @if (values().length > 0) {
+            <button
+              pButton
+              label="Limpar Todos"
+              icon="pi pi-times"
+              (click)="clearAllValues()"
+              class="p-button-text p-button-sm p-button-danger"
+              type="button"
+            ></button>
+          }
+        </div>
+        
+        <!-- Lista de valores -->
+        @if (values().length > 0) {
+          <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            @for (value of values(); track $index) {
+              <div class="flex items-center gap-3 p-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
+                <span class="text-green-500 dark:text-green-400">•</span>
+                <span class="flex-1 text-sm text-gray-800 dark:text-gray-200">{{ value }}</span>
+                <button
+                  (click)="removeValue($index)"
+                  class="px-2 py-1 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded transition-colors text-sm"
+                  type="button"
+                  [title]="'Remover: ' + value"
+                >✖</button>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="mb-3 p-4 text-center text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600">
+            Nenhum valor adicionado ainda
+          </div>
+        }
+        
+        @if (values().length < 3) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-1">
+            <span>⚠️</span>
+            <span>Mínimo de 3 valores para salvar</span>
+          </p>
+        }
+
+        <!-- Adicionar novo valor -->
+        <div class="flex gap-2">
+          <input
+            pInputText
+            [(ngModel)]="newValue"
+            (keyup.enter)="addValue()"
+            placeholder="Digite um novo valor e pressione Enter..."
+            class="flex-1"
+          />
+          <button
+            pButton
+            label="Adicionar"
+            icon="pi pi-plus"
+            (click)="addValue()"
+            [disabled]="!newValue().trim()"
+            type="button"
+          ></button>
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+        @if (!canSave) {
+          <p class="text-xs text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-1">
+            <span>ℹ️</span>
+            <span>Preencha todos os campos obrigatórios</span>
+          </p>
+        }
+        <div class="flex justify-end items-center gap-2">
+          <button
+            pButton
+            label="Cancelar"
+            (click)="cancelEdit()"
+            class="p-button-outlined p-button-secondary"
+            type="button"
+          ></button>
+          <button
+            pButton
+            label="Salvar"
+            (click)="saveChanges()"
+            [disabled]="!canSave"
+            class="p-button-success"
+            icon="pi pi-check"
+          ></button>
+        </div>
+      </div>
+    </div>
   </div>
-</p-card>
+}

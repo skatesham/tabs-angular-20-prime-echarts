@@ -37,6 +37,13 @@ export const STORAGE_KEY_QUANTUM_ACTIVITIES = 'quantum-activities';
 export const STORAGE_KEY_QUANTUM_PENDING = 'quantum-activities-pending';
 
 /**
+ * Chave para armazenar missão, visão e valores
+ * Estrutura: Pillar[]
+ * Usado para personalizar o propósito do ateliê
+ */
+export const STORAGE_KEY_MISSION_VISION_VALUES = 'mission-vision-values';
+
+/**
  * Mapa de todas as chaves de storage com metadados
  */
 export const STORAGE_KEYS_MAP: Record<string, StorageKeyConfig> = {
@@ -59,6 +66,11 @@ export const STORAGE_KEYS_MAP: Record<string, StorageKeyConfig> = {
     key: STORAGE_KEY_QUANTUM_PENDING,
     description: 'Datas de início de atividades pendentes',
     dataType: '{ [activityId]: timestamp }'
+  },
+  MISSION_VISION_VALUES: {
+    key: STORAGE_KEY_MISSION_VISION_VALUES,
+    description: 'Missão, visão e valores do ateliê',
+    dataType: 'Pillar[]'
   }
 } as const;
 
@@ -70,7 +82,8 @@ export const ALL_STORAGE_KEYS = [
   STORAGE_KEY_DAILY_TASKS,
   STORAGE_KEY_DAILY_PROGRESS,
   STORAGE_KEY_QUANTUM_ACTIVITIES,
-  STORAGE_KEY_QUANTUM_PENDING
+  STORAGE_KEY_QUANTUM_PENDING,
+  STORAGE_KEY_MISSION_VISION_VALUES
 ] as const;
 
 /**
