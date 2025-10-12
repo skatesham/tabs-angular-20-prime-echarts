@@ -90,67 +90,137 @@ export class DailyTasksComponent {
   private getDefaultTasks(): Task[] {
     const dayOfWeek = new Date().getDay();
     
-    // Domingo: Renovação e Planejamento Consciente
+    // Domingo: Descanso e Preparação
     const sundayTasks = [
-      { id: 1, label: 'Desconectar de telas por 2-3 horas', completed: false },
-      { id: 2, label: 'Meditar sobre ideias e projetos futuros', completed: false },
-      { id: 3, label: 'Praticar gratidão: listar 5 conquistas da semana', completed: false },
-      { id: 4, label: 'Ler ou estudar sobre arte/técnicas inspiradoras', completed: false },
-      { id: 5, label: 'Planejar intenções criativas para próxima semana', completed: false },
+      { id: 1, label: 'Descansar das telas', completed: false },
+      { id: 2, label: 'Pensar em ideias novas', completed: false },
+      { id: 3, label: 'Listar coisas boas que aconteceram', completed: false },
+      { id: 4, label: 'Consumir conteúdo inspirador', completed: false },
+      { id: 5, label: 'Organizar próximos passos', completed: false },
+      { id: 6, label: 'Criar algo livre', completed: false },
+      { id: 7, label: 'Conhecer trabalhos de outros criadores', completed: false },
+      { id: 8, label: 'Arrumar espaço de trabalho', completed: false },
+      { id: 9, label: 'Checar como está se sentindo', completed: false },
+      { id: 10, label: 'Juntar ideias em um lugar', completed: false },
+      { id: 11, label: 'Fazer pausa e respirar', completed: false },
+      { id: 12, label: 'Separar materiais para usar', completed: false },
+      { id: 13, label: 'Ver o que está em andamento', completed: false },
+      { id: 14, label: 'Anotar o que precisa resolver', completed: false },
+      { id: 15, label: 'Explorar referências visuais', completed: false },
     ];
 
-    // Segunda: Planejamento e Estrutura
+    // Dia de Trabalho: Organização
     const mondayTasks = [
-      { id: 1, label: 'Organizar ateliê e preparar materiais da semana', completed: false },
-      { id: 2, label: 'Definir metas criativas e prioridades semanais', completed: false },
-      { id: 3, label: 'Revisar projetos em andamento e deadlines', completed: false },
-      { id: 4, label: 'Sessão de brainstorming: novas ideias e conceitos', completed: false },
-      { id: 5, label: 'Criar cronograma visual da semana', completed: false },
+      { id: 1, label: 'Organizar espaço de trabalho', completed: false },
+      { id: 2, label: 'Definir prioridades do dia', completed: false },
+      { id: 3, label: 'Ver o que está em andamento', completed: false },
+      { id: 4, label: 'Anotar ideias que surgirem', completed: false },
+      { id: 5, label: 'Fazer lista de tarefas', completed: false },
+      { id: 6, label: 'Atualizar trabalhos online', completed: false },
+      { id: 7, label: 'Listar o que precisa adquirir', completed: false },
+      { id: 8, label: 'Fazer pausa e respirar', completed: false },
+      { id: 9, label: 'Checar como está se sentindo', completed: false },
+      { id: 10, label: 'Preparar materiais para próximo dia', completed: false },
+      { id: 11, label: 'Revisar o que aprendeu hoje', completed: false },
+      { id: 12, label: 'Explorar referências visuais', completed: false },
+      { id: 13, label: 'Testar combinação de materiais', completed: false },
+      { id: 14, label: 'Documentar processo com fotos', completed: false },
+      { id: 15, label: 'Consumir conteúdo inspirador', completed: false },
     ];
 
-    // Terça: Experimentação e Técnicas Inovadoras
+    // Dia de Trabalho: Experimentação
     const tuesdayTasks = [
-      { id: 1, label: 'Experimentar técnica nova: mixed media ou colagem', completed: false },
-      { id: 2, label: 'Pesquisar referências visuais inspiradoras', completed: false },
-      { id: 3, label: 'Criar 3 estudos rápidos com materiais diferentes', completed: false },
-      { id: 4, label: 'Documentar processo criativo com fotos/vídeos', completed: false },
-      { id: 5, label: 'Avaliar resultados e anotar descobertas', completed: false },
+      { id: 1, label: 'Organizar espaço de trabalho', completed: false },
+      { id: 2, label: 'Definir prioridades do dia', completed: false },
+      { id: 3, label: 'Testar algo novo', completed: false },
+      { id: 4, label: 'Explorar referências visuais', completed: false },
+      { id: 5, label: 'Fazer testes rápidos', completed: false },
+      { id: 6, label: 'Documentar processo com fotos', completed: false },
+      { id: 7, label: 'Anotar o que funcionou', completed: false },
+      { id: 8, label: 'Consumir conteúdo inspirador', completed: false },
+      { id: 9, label: 'Fazer pausa e respirar', completed: false },
+      { id: 10, label: 'Checar como está se sentindo', completed: false },
+      { id: 11, label: 'Revisar o que aprendeu hoje', completed: false },
+      { id: 12, label: 'Testar combinação de materiais', completed: false },
+      { id: 13, label: 'Conhecer trabalhos de outros criadores', completed: false },
+      { id: 14, label: 'Anotar ideias que surgirem', completed: false },
+      { id: 15, label: 'Preparar materiais para próximo dia', completed: false },
     ];
 
-    // Quarta: Fluxo Criativo e Produção Intensa
+    // Dia de Trabalho: Produção
     const wednesdayTasks = [
-      { id: 1, label: 'Sessão de deep work: 2-3h de criação focada', completed: false },
-      { id: 2, label: 'Aplicar técnica dominada em projeto principal', completed: false },
-      { id: 3, label: 'Pausas estratégicas: alongamento a cada 50min', completed: false },
-      { id: 4, label: 'Revisar progresso e ajustar ritmo de trabalho', completed: false },
-      { id: 5, label: 'Finalizar pelo menos uma peça/etapa importante', completed: false },
+      { id: 1, label: 'Organizar espaço de trabalho', completed: false },
+      { id: 2, label: 'Definir prioridades do dia', completed: false },
+      { id: 3, label: 'Trabalhar com foco', completed: false },
+      { id: 4, label: 'Aplicar técnicas no projeto', completed: false },
+      { id: 5, label: 'Fazer pausas regulares', completed: false },
+      { id: 6, label: 'Revisar progresso', completed: false },
+      { id: 7, label: 'Avançar em etapas importantes', completed: false },
+      { id: 8, label: 'Criar ambiente inspirador', completed: false },
+      { id: 9, label: 'Anotar ideias que surgirem', completed: false },
+      { id: 10, label: 'Fazer pausa e respirar', completed: false },
+      { id: 11, label: 'Revisar o que aprendeu hoje', completed: false },
+      { id: 12, label: 'Checar como está se sentindo', completed: false },
+      { id: 13, label: 'Documentar processo com fotos', completed: false },
+      { id: 14, label: 'Explorar referências visuais', completed: false },
+      { id: 15, label: 'Preparar materiais para próximo dia', completed: false },
     ];
 
-    // Quinta: Refinamento e Detalhes
+    // Dia de Trabalho: Refinamento
     const thursdayTasks = [
-      { id: 1, label: 'Revisar trabalhos da semana com olhar crítico', completed: false },
-      { id: 2, label: 'Adicionar detalhes e acabamentos refinados', completed: false },
-      { id: 3, label: 'Corrigir imperfeições e ajustar composições', completed: false },
-      { id: 4, label: 'Preparar portfólio: fotografar/digitalizar criações', completed: false },
-      { id: 5, label: 'Organizar arquivos digitais e backups', completed: false },
+      { id: 1, label: 'Organizar espaço de trabalho', completed: false },
+      { id: 2, label: 'Definir prioridades do dia', completed: false },
+      { id: 3, label: 'Revisar trabalhos recentes', completed: false },
+      { id: 4, label: 'Adicionar detalhes', completed: false },
+      { id: 5, label: 'Ajustar o que precisa', completed: false },
+      { id: 6, label: 'Documentar processo com fotos', completed: false },
+      { id: 7, label: 'Organizar arquivos', completed: false },
+      { id: 8, label: 'Editar registros visuais', completed: false },
+      { id: 9, label: 'Escrever sobre o trabalho', completed: false },
+      { id: 10, label: 'Fazer pausa e respirar', completed: false },
+      { id: 11, label: 'Revisar o que aprendeu hoje', completed: false },
+      { id: 12, label: 'Checar como está se sentindo', completed: false },
+      { id: 13, label: 'Explorar referências visuais', completed: false },
+      { id: 14, label: 'Anotar ideias que surgirem', completed: false },
+      { id: 15, label: 'Preparar materiais para próximo dia', completed: false },
     ];
 
-    // Sexta: Síntese e Compartilhamento
+    // Dia de Trabalho: Finalização
     const fridayTasks = [
-      { id: 1, label: 'Finalizar projetos pendentes da semana', completed: false },
-      { id: 2, label: 'Compartilhar criação nas redes ou com comunidade', completed: false },
-      { id: 3, label: 'Escrever reflexão sobre aprendizados da semana', completed: false },
-      { id: 4, label: 'Limpar ateliê e preparar para fim de semana', completed: false },
-      { id: 5, label: 'Celebrar conquistas: revisar progresso semanal', completed: false },
+      { id: 1, label: 'Organizar espaço de trabalho', completed: false },
+      { id: 2, label: 'Definir prioridades do dia', completed: false },
+      { id: 3, label: 'Finalizar o que está pendente', completed: false },
+      { id: 4, label: 'Compartilhar trabalho online', completed: false },
+      { id: 5, label: 'Escrever sobre aprendizados', completed: false },
+      { id: 6, label: 'Limpar e organizar espaço', completed: false },
+      { id: 7, label: 'Revisar progresso', completed: false },
+      { id: 8, label: 'Interagir com outros criadores', completed: false },
+      { id: 9, label: 'Mostrar processo de trabalho', completed: false },
+      { id: 10, label: 'Fazer pausa e respirar', completed: false },
+      { id: 11, label: 'Revisar o que aprendeu hoje', completed: false },
+      { id: 12, label: 'Checar como está se sentindo', completed: false },
+      { id: 13, label: 'Conhecer trabalhos de outros criadores', completed: false },
+      { id: 14, label: 'Anotar ideias que surgirem', completed: false },
+      { id: 15, label: 'Ver o que ficou para próxima semana', completed: false },
     ];
 
-    // Sábado: Conexão com Vida e Ambiente
+    // Dia Livre: Exploração
     const saturdayTasks = [
-      { id: 1, label: 'Limpeza profunda do ateliê com atenção plena', completed: false },
-      { id: 2, label: 'Caminhar ao ar livre e observar a natureza', completed: false },
-      { id: 3, label: 'Conectar com pessoas queridas (presencial ou virtual)', completed: false },
-      { id: 4, label: 'Preparar ambiente: plantas, aromas, luz natural', completed: false },
-      { id: 5, label: 'Criar algo livre, sem pressão ou expectativa', completed: false },
+      { id: 1, label: 'Limpar espaço de trabalho', completed: false },
+      { id: 2, label: 'Sair e observar ao redor', completed: false },
+      { id: 3, label: 'Conversar com pessoas', completed: false },
+      { id: 4, label: 'Cuidar do ambiente', completed: false },
+      { id: 5, label: 'Criar algo livre', completed: false },
+      { id: 6, label: 'Trabalhar em lugar diferente', completed: false },
+      { id: 7, label: 'Testar combinação de materiais', completed: false },
+      { id: 8, label: 'Checar como está se sentindo', completed: false },
+      { id: 9, label: 'Anotar ideias que surgirem', completed: false },
+      { id: 10, label: 'Fazer pausa e respirar', completed: false },
+      { id: 11, label: 'Revisar coisas boas que aconteceram', completed: false },
+      { id: 12, label: 'Explorar referências visuais', completed: false },
+      { id: 13, label: 'Conhecer trabalhos de outros criadores', completed: false },
+      { id: 14, label: 'Consumir conteúdo inspirador', completed: false },
+      { id: 15, label: 'Reorganizar materiais', completed: false },
     ];
 
     // Retorna tarefas baseadas no dia da semana
