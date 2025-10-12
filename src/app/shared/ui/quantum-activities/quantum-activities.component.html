@@ -21,7 +21,7 @@
       <div class="flex items-center gap-3">
         <span class="text-3xl">{{ activity.icon }}</span>
         <div class="flex-1">
-          <p class="text-[10px] text-gray-500 dark:text-gray-400 mb-0.5">
+          <p class="text-[10px] mb-0.5" [ngClass]="!isCompleted(activity.id) ? 'text-yellow-600 dark:text-yellow-400 font-semibold' : 'text-gray-500 dark:text-gray-400'">
             @if (!isCompleted(activity.id)) {
             Ritual disponível para celebrar:
             }

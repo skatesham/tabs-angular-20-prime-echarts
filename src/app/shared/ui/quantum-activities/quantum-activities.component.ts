@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 
@@ -6,6 +7,7 @@ interface Activity {
   id: string;
   name: string;
   frequency: string;
+  hz: string;
   icon: string;
   color: string;
   bgColor: string;
@@ -15,7 +17,7 @@ interface Activity {
 @Component({
   selector: 'p-quantum-activities',
   standalone: true,
-  imports: [CardModule],
+  imports: [CardModule, NgClass],
   templateUrl: './quantum-activities.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -31,6 +33,7 @@ export class QuantumActivitiesComponent {
       id: 'daily',
       name: 'Ressonância Interna',
       frequency: 'diário',
+      hz: '528 Hz',
       icon: '🧘',
       color: 'text-cyan-700 dark:text-cyan-300',
       bgColor: 'bg-cyan-50 dark:bg-cyan-950/30',
@@ -40,6 +43,7 @@ export class QuantumActivitiesComponent {
       id: 'weekly',
       name: 'Portal da Prosperidade',
       frequency: 'semanal',
+      hz: '639 Hz',
       icon: '🌀',
       color: 'text-blue-700 dark:text-blue-300',
       bgColor: 'bg-blue-50 dark:bg-blue-950/30',
@@ -49,6 +53,7 @@ export class QuantumActivitiesComponent {
       id: 'monthly',
       name: 'Ciclo da Abundância',
       frequency: 'mensal',
+      hz: '741 Hz',
       icon: '🌊',
       color: 'text-indigo-700 dark:text-indigo-300',
       bgColor: 'bg-indigo-50 dark:bg-indigo-950/30',
@@ -88,9 +93,14 @@ export class QuantumActivitiesComponent {
   get visibleActivities() {
     // Se showAll = true, mostra todas as atividades (modo Ideas)
     // Se showAll = false, mostra apenas as não concluídas (modo Home)
-    const visible = this.showAll() 
+    let visible = this.showAll() 
       ? this.activities 
       : this.activities.filter(activity => !this.isCompleted(activity.id));
+    
+    // Se não for showAll, inverte a ordem (mais recente primeiro)
+    if (!this.showAll()) {
+      visible = [...visible].reverse();
+    }
     
     // Inicializa pending dates para atividades visíveis
     visible.forEach(activity => {

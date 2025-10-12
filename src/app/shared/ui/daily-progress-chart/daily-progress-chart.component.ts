@@ -45,9 +45,6 @@ export class DailyProgressChartComponent {
   }
 
   private initializeFakeData() {
-    const stored = localStorage.getItem('daily-progress-history');
-    if (stored) return;
-
     // Dados fictícios dos últimos 7 dias
     const fakeData: DailyProgress[] = [];
     const today = new Date();
@@ -57,7 +54,7 @@ export class DailyProgressChartComponent {
       date.setDate(date.getDate() - i);
       const dateStr = this.formatDate(date);
       
-      const total = 5;
+      const total = 15;
       const completed = i === 0 ? 0 : Math.floor(Math.random() * (total + 1));
       
       fakeData.push({
@@ -81,7 +78,7 @@ export class DailyProgressChartComponent {
       history.push({
         date: today,
         completed: 0,
-        total: 5,
+        total: 15,
         percentage: 0
       });
       this.saveHistory(history);
@@ -98,7 +95,7 @@ export class DailyProgressChartComponent {
       history.push({
         date: today,
         completed: 0,
-        total: 5,
+        total: 15,
         percentage: 0
       });
       
