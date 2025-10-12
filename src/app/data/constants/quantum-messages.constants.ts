@@ -80,11 +80,3 @@ export const QUANTUM_MESSAGES: QuantumMessagesByDay = [
     'Sua essência livre inspira possibilidades infinitas'
   ]
 ] as const;
-
-export const ZEN_MESSAGES: readonly string[] = [
-  'O caminho se revela a cada passo',
-  'A prática diária cultiva a paz interior',
-  'Pequenas ações criam grandes transformações',
-  'O presente é o único momento de poder',
-  'Cada respiração é uma nova oportunidade'
-] as const;

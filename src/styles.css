@@ -2,5 +2,468 @@
 @import "tailwindcss";
 @plugin "tailwindcss-primeui";
 
+/* 
+  Sistema de Fontes - 3 Tipografias Distintas
+  1. Poppins - Padrão da app (geométrica, moderna, amigável)
+  2. Space Grotesk - App Name e títulos (tech, única, personalidade)
+  3. Merriweather - Citações e poesia (clássica, elegante, legível)
+*/
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
 
+:root {
+  --font-default: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-brand: 'Space Grotesk', 'Courier New', monospace;
+  --font-quote: 'Merriweather', Georgia, 'Times New Roman', serif;
+}
+
+/* 
+  Paleta de Cores - Frequência 528 Hz (Amor/Motivação)
+  Base: #8effb8 (Verde Esmeralda)
+  
+  Paleta Rica com Gradientes e Variações
+*/
+
+:root {
+  /* Light Mode - Paleta Vibrante e Equilibrada */
+  --color-bg-page: linear-gradient(135deg, #f0fdf7 0%, #ecfdf5 50%, #d1fae5 100%);
+  --color-bg-page-solid: #f0fdf7;
+  --color-bg-card: linear-gradient(145deg, #ffffff 0%, #f9fffe 100%);
+  --color-bg-card-solid: #ffffff;
+  --color-bg-card-hover: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%);
+  --color-border: #a7f3d0;
+  --color-border-accent: #6ee7b7;
+  
+  /* Textos - Hierarquia Clara */
+  --color-text-primary: #065f46;       /* Verde profundo para títulos principais */
+  --color-text-secondary: #047857;     /* Verde médio para subtítulos */
+  --color-text-tertiary: #10b981;      /* Verde vibrante para destaques */
+  --color-text-body: #374151;          /* Cinza escuro neutro */
+  --color-text-muted: #6b7280;         /* Cinza médio para textos secundários */
+  
+  /* Acentos e Ações */
+  --color-accent-primary: #10b981;     /* Verde esmeralda */
+  --color-accent-secondary: #34d399;   /* Verde claro */
+  --color-accent-tertiary: #6ee7b7;    /* Verde suave */
+  --color-accent-hover: #059669;
+  
+  /* Gradientes Especiais */
+  --gradient-primary: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+  --gradient-secondary: linear-gradient(135deg, #8effb8 0%, #6ee7b7 50%, #34d399 100%);
+  --gradient-accent: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(16, 185, 129, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -1px rgba(16, 185, 129, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(16, 185, 129, 0.2), 0 4px 6px -2px rgba(16, 185, 129, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(16, 185, 129, 0.25), 0 10px 10px -5px rgba(16, 185, 129, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode - Profundo com Acentos Neon */
+    --color-bg-page: linear-gradient(135deg, #0a0f14 0%, #0f1419 50%, #1a1f2e 100%);
+    --color-bg-page-solid: #0f1419;
+    --color-bg-card: linear-gradient(145deg, #1a2332 0%, #1f2937 100%);
+    --color-bg-card-solid: #1a2332;
+    --color-bg-card-hover: linear-gradient(145deg, #1f2937 0%, #243447 100%);
+    --color-border: #374151;
+    --color-border-accent: #4b5563;
+    
+    /* Textos - Neon e Vibrante */
+    --color-text-primary: #8effb8;       /* Verde neon para títulos */
+    --color-text-secondary: #6ee7b7;     /* Verde claro para subtítulos */
+    --color-text-tertiary: #34d399;      /* Verde médio para destaques */
+    --color-text-body: #d1d5db;          /* Cinza claro suave */
+    --color-text-muted: #9ca3af;         /* Cinza médio */
+    
+    /* Acentos Brilhantes */
+    --color-accent-primary: #34d399;
+    --color-accent-secondary: #6ee7b7;
+    --color-accent-tertiary: #8effb8;
+    --color-accent-hover: #10b981;
+    
+    /* Gradientes Neon */
+    --gradient-primary: linear-gradient(135deg, #34d399 0%, #6ee7b7 50%, #8effb8 100%);
+    --gradient-secondary: linear-gradient(135deg, #8effb8 0%, #a7f3d0 50%, #6ee7b7 100%);
+    --gradient-accent: linear-gradient(90deg, #34d399 0%, #10b981 100%);
+    
+    /* Sombras Brilhantes */
+    --shadow-sm: 0 1px 2px 0 rgba(142, 255, 184, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(142, 255, 184, 0.2), 0 2px 4px -1px rgba(142, 255, 184, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(142, 255, 184, 0.3), 0 4px 6px -2px rgba(142, 255, 184, 0.2);
+    --shadow-xl: 0 20px 25px -5px rgba(142, 255, 184, 0.4), 0 10px 10px -5px rgba(142, 255, 184, 0.2);
+  }
+}
+
+.dark {
+  /* Dark Mode via classe */
+  --color-bg-page: linear-gradient(135deg, #0a0f14 0%, #0f1419 50%, #1a1f2e 100%);
+  --color-bg-page-solid: #0f1419;
+  --color-bg-card: linear-gradient(145deg, #1a2332 0%, #1f2937 100%);
+  --color-bg-card-solid: #1a2332;
+  --color-bg-card-hover: linear-gradient(145deg, #1f2937 0%, #243447 100%);
+  --color-border: #374151;
+  --color-border-accent: #4b5563;
+  --color-text-primary: #8effb8;
+  --color-text-secondary: #6ee7b7;
+  --color-text-tertiary: #34d399;
+  --color-text-body: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-accent-primary: #34d399;
+  --color-accent-secondary: #6ee7b7;
+  --color-accent-tertiary: #8effb8;
+  --color-accent-hover: #10b981;
+  --gradient-primary: linear-gradient(135deg, #34d399 0%, #6ee7b7 50%, #8effb8 100%);
+  --gradient-secondary: linear-gradient(135deg, #8effb8 0%, #a7f3d0 50%, #6ee7b7 100%);
+  --gradient-accent: linear-gradient(90deg, #34d399 0%, #10b981 100%);
+  --shadow-sm: 0 1px 2px 0 rgba(142, 255, 184, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(142, 255, 184, 0.2), 0 2px 4px -1px rgba(142, 255, 184, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(142, 255, 184, 0.3), 0 4px 6px -2px rgba(142, 255, 184, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(142, 255, 184, 0.4), 0 10px 10px -5px rgba(142, 255, 184, 0.2);
+}
+
+/* 
+  Regra UX de Backgrounds:
+  1. Page: Cor sólida suave que permite ver imagem de fundo
+  2. Cards: Fundo semi-transparente com blur (glassmorphism)
+  3. Imagem de fundo sempre visível com baixa opacidade
+*/
+
+/* Aplicação Global */
+body {
+  background-color: var(--color-bg-page-solid) !important;
+  color: var(--color-text-body) !important;
+  font-family: var(--font-default) !important;
+}
+
+.page-background {
+  background-color: transparent !important;
+  /* Permite que a imagem de fundo seja visível */
+}
+
+/* Sobrescrever classes Tailwind - Manter transparente para imagem */
+.bg-gray-50,
+.bg-emerald-50\/30 {
+  background-color: transparent !important;
+}
+
+.dark .bg-gray-900 {
+  background-color: transparent !important;
+}
+
+/* Cards - Glassmorphism Effect */
+.p-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 2px solid var(--color-border) !important;
+  color: var(--color-text-body) !important;
+  box-shadow: var(--shadow-md) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark Mode - Cards mais escuros mas ainda semi-transparentes */
+@media (prefers-color-scheme: dark) {
+  .p-card {
+    background: rgba(26, 35, 50, 0.75) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+  }
+}
+
+.dark .p-card {
+  background: rgba(26, 35, 50, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* Brilho sutil no card */
+.p-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(142, 255, 184, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.p-card:hover::before {
+  left: 100%;
+}
+
+.p-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--color-border-accent) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.p-card .p-card-body {
+  background: transparent !important;
+  color: var(--color-text-body) !important;
+}
+
+.p-card .p-card-content {
+  background: transparent !important;
+  color: var(--color-text-body) !important;
+}
+
+/* Títulos nos Cards */
+.p-card h3,
+.p-card h2,
+.p-card h1 {
+  color: var(--color-text-primary) !important;
+}
+
+.p-card h4,
+.p-card h5,
+.p-card h6 {
+  color: var(--color-text-secondary) !important;
+}
+
+/* Texto nos Cards */
+.p-card p,
+.p-card span,
+.p-card label {
+  color: var(--color-text-body) !important;
+}
+
+/* Forçar cores em elementos específicos do Tailwind */
+.p-card .text-gray-700,
+.p-card .text-gray-800 {
+  color: var(--color-text-body) !important;
+}
+
+.p-card .dark\:text-white,
+.p-card .dark\:text-gray-300 {
+  color: var(--color-text-body) !important;
+}
+
+/* Progress Bar */
+.p-progressbar {
+  background: var(--color-border) !important;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.p-progressbar .p-progressbar-value {
+  background: var(--gradient-primary) !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Animação de brilho para headers */
+@keyframes animate-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: animate-shimmer 3s ease-in-out infinite;
+}
+
+/* Chips */
+.p-chip {
+  background: var(--gradient-accent) !important;
+  color: white !important;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-accent-secondary);
+}
+
+/* Dark Mode - Sombras mais intensas */
+@media (prefers-color-scheme: dark) {
+  .p-card:hover {
+    box-shadow: var(--shadow-xl) !important;
+  }
+}
+
+.dark .p-card:hover {
+  box-shadow: var(--shadow-xl) !important;
+}
+
+/* Classes Utilitárias de Texto */
+.text-primary {
+  color: var(--color-text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary) !important;
+}
+
+.text-tertiary {
+  color: var(--color-text-tertiary) !important;
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+.text-accent {
+  color: var(--color-accent-primary) !important;
+}
+
+/* Classes Utilitárias de Gradientes */
+.bg-gradient-primary {
+  background: var(--gradient-primary) !important;
+}
+
+.bg-gradient-secondary {
+  background: var(--gradient-secondary) !important;
+}
+
+.bg-gradient-accent {
+  background: var(--gradient-accent) !important;
+}
+
+/* Classes de Sombra */
+.shadow-sm-custom {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-md-custom {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg-custom {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-xl-custom {
+  box-shadow: var(--shadow-xl);
+}
+
+/* Títulos Globais */
+h1, h2, h3 {
+  color: var(--color-text-primary);
+  font-family: var(--font-default);
+}
+
+h4, h5, h6 {
+  color: var(--color-text-secondary);
+  font-family: var(--font-default);
+}
+
+/* Header - Títulos sempre com cor vibrante e legível */
+.header-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 
+               0 4px 16px rgba(0, 0, 0, 0.2),
+               0 0 40px rgba(16, 185, 129, 0.4);
+  font-family: var(--font-brand) !important;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .header-title {
+    color: #8effb8 !important;
+    text-shadow: 0 2px 8px rgba(142, 255, 184, 0.5), 
+                 0 4px 16px rgba(142, 255, 184, 0.3),
+                 0 0 40px rgba(142, 255, 184, 0.4);
+  }
+}
+
+.dark .header-title {
+  color: #8effb8 !important;
+  text-shadow: 0 2px 8px rgba(142, 255, 184, 0.5), 
+               0 4px 16px rgba(142, 255, 184, 0.3),
+               0 0 40px rgba(142, 255, 184, 0.4);
+}
+
+.header-subtitle {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 
+               0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .header-subtitle {
+    color: rgba(142, 255, 184, 0.9) !important;
+    text-shadow: 0 2px 4px rgba(142, 255, 184, 0.3),
+                 0 1px 8px rgba(142, 255, 184, 0.2);
+  }
+}
+
+.dark .header-subtitle {
+  color: rgba(142, 255, 184, 0.9) !important;
+  text-shadow: 0 2px 4px rgba(142, 255, 184, 0.3),
+               0 1px 8px rgba(142, 255, 184, 0.2);
+}
+
+/* Links */
+a {
+  color: var(--color-accent);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Botões com Accent Color */
+.btn-accent {
+  background-color: var(--color-accent);
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.btn-accent:hover {
+  background-color: var(--color-accent-hover);
+}
+
+/* Classes de Fonte */
+.font-default {
+  font-family: var(--font-default) !important;
+}
+
+.font-brand {
+  font-family: var(--font-brand) !important;
+  letter-spacing: 0.02em;
+}
+
+.font-quote {
+  font-family: var(--font-quote) !important;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Aplicar fonte de citação em blockquotes */
+blockquote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  border-left: 4px solid var(--color-accent-primary);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+blockquote::before {
+  content: '"';
+  font-size: 3rem;
+  color: var(--color-accent-tertiary);
+  opacity: 0.3;
+  position: absolute;
+  margin-left: -2rem;
+  margin-top: -1rem;
+}
+
+/* App Name especial */
+.app-name {
+  font-family: var(--font-brand) !important;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

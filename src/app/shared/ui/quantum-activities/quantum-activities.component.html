@@ -1,13 +1,26 @@
 @if (hasOpenActivities) {
 <div class="mb-6">
-  <!-- Sub-header Zen -->
+  <!-- Sub-header Inspiração -->
   <div
     class="mb-4 px-4 py-3 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 rounded-lg border-l-4 border-purple-400 dark:border-purple-600">
-    <div class="flex items-center gap-3">
-      <span class="text-2xl">💪</span>
-      <p class="text-sm italic text-gray-700 dark:text-gray-300">
-        {{ zenMessage }}
-      </p>
+    <div class="flex items-start gap-3">
+      <span class="text-2xl">{{ inspirationMessage.icon }}</span>
+      <div class="flex-1">
+        <p class="text-sm italic text-gray-700 dark:text-gray-300 mb-2">
+          {{ inspirationMessage.text }}
+        </p>
+        <div class="flex items-center gap-2 flex-wrap">
+          <p-chip 
+            [label]="inspirationMessage.type" 
+            styleClass="text-xs py-1 px-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
+          />
+          @if (inspirationMessage.reference) {
+          <span class="text-xs text-gray-500 dark:text-gray-400">
+            — {{ inspirationMessage.reference }}
+          </span>
+          }
+        </div>
+      </div>
     </div>
   </div>
 

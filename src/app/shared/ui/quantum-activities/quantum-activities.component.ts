@@ -2,13 +2,14 @@ import { ChangeDetectionStrategy, Component, effect, inject, input, signal } fro
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import { QUANTUM_ACTIVITIES, ZEN_MESSAGES, type ActivityTemplate } from '../../../data/constants';
+import { ChipModule } from 'primeng/chip';
+import { QUANTUM_ACTIVITIES, INSPIRATION_MESSAGES, type ActivityTemplate, type InspirationMessage } from '../../../data/constants';
 import { QuantumActivitiesService } from '../../../core/services/quantum-activities.service';
 
 @Component({
   selector: 'p-quantum-activities',
   standalone: true,
-  imports: [CardModule, NgClass],
+  imports: [CardModule, ChipModule, NgClass],
   templateUrl: './quantum-activities.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -71,9 +72,9 @@ export class QuantumActivitiesComponent {
     return this.visibleActivities.length > 0;
   }
 
-  get zenMessage(): string {
+  get inspirationMessage(): InspirationMessage {
     const dayIndex = new Date().getDay();
-    return ZEN_MESSAGES[dayIndex % ZEN_MESSAGES.length];
+    return INSPIRATION_MESSAGES[dayIndex % INSPIRATION_MESSAGES.length];
   }
 
   onActivityClick(activityId: string) {

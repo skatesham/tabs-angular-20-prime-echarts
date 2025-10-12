@@ -1,29 +1,37 @@
 <div class="mb-6 relative">
-  <div class="flex items-center gap-4 p-6 bg-gradient-to-r from-{{ gradientFrom() }} via-{{ gradientVia() }} to-{{ gradientTo() }} dark:from-{{ gradientFrom().replace('500', '900') }} dark:via-{{ gradientVia().replace('500', '900') }} dark:to-{{ gradientTo().replace('500', '900') }} rounded-2xl shadow-xl overflow-hidden">
+  <div class="flex items-center gap-4 p-6 rounded-2xl shadow-xl overflow-hidden relative" [style.background]="getGradientStyle()">
+    <!-- Overlay sutil apenas para legibilidade -->
+    <div class="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/10 dark:from-black/30 dark:via-transparent dark:to-black/30"></div>
+    
     <!-- Padrão de fundo -->
-    <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0 opacity-15 dark:opacity-10">
       <div class="absolute inset-0" style="background-image: url('images/metatrons-cube-1601161_1920.png'); background-size: cover; background-position: center;"></div>
     </div>
     
+    <!-- Brilho animado -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+    </div>
+    
     <!-- Conteúdo -->
-    <div class="relative flex-1">
+    <div class="relative flex-1 z-10">
       <div class="flex items-center gap-4 mb-2">
         @if (logoImage()) {
           <img [src]="logoImage()" alt="Logo" class="w-16 h-16 md:w-20 md:h-20 object-contain" />
         } @else if (icon()) {
           <span class="text-4xl">{{ icon() }}</span>
         }
-        <h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight header-title">
           {{ title() }}
         </h1>
       </div>
-      <p class="text-sm md:text-base text-white/90 font-light">
+      <p class="text-sm md:text-base font-light header-subtitle">
         {{ subtitle() }}
       </p>
     </div>
     
     <!-- Badge decorativo -->
-    <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+    <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 relative z-10">
       <span class="text-2xl">{{ badgeIcon() }}</span>
       <span class="text-sm font-medium text-white">{{ badgeLabel() }}</span>
     </div>

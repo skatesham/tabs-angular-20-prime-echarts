@@ -1,27 +1,129 @@
-<div class="grid gap-4 md:grid-cols-2">
+<div class="grid gap-6 md:grid-cols-2">
   
-  <p-card class="shadow-sm">
-    <div class="flex items-center gap-3">
-      <span class="text-2xl">🎯</span>
-      <div class="flex flex-col gap-1">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Foco</h3>
-        <p class="text-sm text-gray-700 dark:text-gray-300 bg-primary-50 dark:bg-primary-900/20 p-2 rounded">
-          {{ focus() }}
-        </p>
+  <!-- Foco -->
+  <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+    <div class="absolute inset-0 bg-gradient-to-br from-orange-400 via-orange-500 to-red-500 opacity-90"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+    
+    <div class="relative p-6">
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0">
+          <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+            <span class="text-3xl">🎯</span>
+          </div>
+        </div>
+        
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-white drop-shadow-md">Foco do Mês</h3>
+            @if (!editingFocus()) {
+              <button
+                (click)="startEditFocus()"
+                class="p-2 hover:bg-white/20 rounded-lg transition-all duration-200 backdrop-blur-sm group"
+                title="Editar foco"
+              >
+                <span class="text-lg group-hover:scale-110 inline-block transition-transform">✏️</span>
+              </button>
+            }
+          </div>
+          
+          @if (!editingFocus()) {
+            <div class="bg-purple-50/80 dark:bg-purple-950/40 backdrop-blur-md rounded-xl p-4 shadow-inner border border-purple-200/40 dark:border-purple-700/40">
+              <p class="text-base text-gray-800 dark:text-gray-100 font-medium leading-relaxed">
+                {{ focus() }}
+              </p>
+            </div>
+          } @else {
+            <div class="space-y-3">
+              <textarea
+                [(ngModel)]="tempFocus"
+                rows="3"
+                class="w-full p-3 text-sm border-2 border-white/50 rounded-xl bg-purple-50/80 dark:bg-purple-950/40 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:border-white focus:ring-2 focus:ring-white/50 transition-all resize-none"
+                placeholder="Ex: Criar conteúdo autêntico e conectar com minha audiência 🚀"
+              ></textarea>
+              <div class="flex gap-2 justify-end">
+                <button
+                  (click)="cancelEditFocus()"
+                  class="px-4 py-2 text-sm font-medium text-white bg-white/20 hover:bg-white/30 rounded-lg backdrop-blur-sm transition-all"
+                >
+                  Cancelar
+                </button>
+                <button
+                  (click)="saveFocus()"
+                  [disabled]="tempFocus().trim().length === 0"
+                  class="px-4 py-2 text-sm font-medium bg-white text-orange-600 rounded-lg hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed shadow-md transition-all"
+                >
+                  💾 Salvar
+                </button>
+              </div>
+            </div>
+          }
+        </div>
       </div>
     </div>
-  </p-card>
+  </div>
 
-  <p-card class="shadow-sm">
-    <div class="flex items-center gap-3">
-      <span class="text-2xl">🏆</span>
-      <div class="flex flex-col gap-1">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Meta</h3>
-        <p class="text-sm text-gray-700 dark:text-gray-300 bg-primary-50 dark:bg-primary-900/20 p-2 rounded">
-          {{ goal() }}
-        </p>
+  <!-- Meta -->
+  <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+    <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 via-amber-500 to-orange-500 opacity-90"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+    
+    <div class="relative p-6">
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0">
+          <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+            <span class="text-3xl">🏆</span>
+          </div>
+        </div>
+        
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-white drop-shadow-md">Meta do Mês</h3>
+            @if (!editingGoal()) {
+              <button
+                (click)="startEditGoal()"
+                class="p-2 hover:bg-white/20 rounded-lg transition-all duration-200 backdrop-blur-sm group"
+                title="Editar meta"
+              >
+                <span class="text-lg group-hover:scale-110 inline-block transition-transform">✏️</span>
+              </button>
+            }
+          </div>
+          
+          @if (!editingGoal()) {
+            <div class="bg-amber-50/80 dark:bg-amber-950/40 backdrop-blur-md rounded-xl p-4 shadow-inner border border-amber-200/40 dark:border-amber-700/40">
+              <p class="text-base text-gray-800 dark:text-gray-100 font-medium leading-relaxed">
+                {{ goal() }}
+              </p>
+            </div>
+          } @else {
+            <div class="space-y-3">
+              <textarea
+                [(ngModel)]="tempGoal"
+                rows="3"
+                class="w-full p-3 text-sm border-2 border-white/50 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:border-white focus:ring-2 focus:ring-white/50 transition-all resize-none"
+                placeholder="Ex: Lançar 3 novos projetos e crescer 50% na audiência 🎯"
+              ></textarea>
+              <div class="flex gap-2 justify-end">
+                <button
+                  (click)="cancelEditGoal()"
+                  class="px-4 py-2 text-sm font-medium text-white bg-white/20 hover:bg-white/30 rounded-lg backdrop-blur-sm transition-all"
+                >
+                  Cancelar
+                </button>
+                <button
+                  (click)="saveGoal()"
+                  [disabled]="tempGoal().trim().length === 0"
+                  class="px-4 py-2 text-sm font-medium bg-white text-amber-600 rounded-lg hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed shadow-md transition-all"
+                >
+                  💾 Salvar
+                </button>
+              </div>
+            </div>
+          }
+        </div>
       </div>
     </div>
-  </p-card>
+  </div>
 
 </div>

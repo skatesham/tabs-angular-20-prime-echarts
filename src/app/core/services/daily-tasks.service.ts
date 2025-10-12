@@ -20,7 +20,7 @@ interface TasksData {
 export class DailyTasksService {
   private readonly storage = inject(StorageService);
   private readonly STORAGE_KEY = STORAGE_KEY_DAILY_TASKS;
-  private readonly TASKS_VERSION = 4;
+  private readonly TASKS_VERSION = 5;
 
   loadTasks(): Task[] {
     const today = this.formatDate(new Date());

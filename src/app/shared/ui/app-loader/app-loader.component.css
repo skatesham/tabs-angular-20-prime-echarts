@@ -1,4 +1,4 @@
-/* 🔮 MANA VITAE FUN MODE */
+/* 🔮 MANAVITAE - Frequência 528 Hz */
 #app-loader {
     position: fixed;
     inset: 0;
@@ -6,11 +6,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    background: radial-gradient(circle at center, #0a1f1a 0%, #020a08 100%);
     overflow: hidden;
     z-index: 9999;
     gap: 1.5rem;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   
   /* mandala gira tipo espiral viva */
@@ -72,56 +72,56 @@
     50%      { transform: translate(-50%, -50%) scale(1.15); filter: blur(120px) hue-rotate(90deg); }
   }
   
-  /* nome do app com gradiente animado */
-  #app-loader .app-name {
-    font-size: 3rem;
-    font-weight: 900;
+  /* nome do app - Space Grotesk com gradiente verde 528 Hz */
+  #app-loader .app-name-loader {
+    font-size: 3.5rem;
+    font-weight: 700;
     text-align: center;
     z-index: 10;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
+    letter-spacing: 0.08em;
+    font-family: 'Space Grotesk', monospace;
     
-    background: linear-gradient(
-      90deg,
-      #ff6b6b,
-      #ffd36b,
-      #8fff8f,
-      #6bd3ff,
-      #b388ff,
-      #ff6bcb,
-      #ff6b6b
-    );
-    background-size: 400% 100%;       /* make gradient longer */
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; /* ensure text shows the gradient */
-    animation: rainbow-shift 8s linear infinite;
+    /* Sem gradiente animado - usa cores inline do HTML */
+    animation: glow-pulse 3s ease-in-out infinite;
   }
   
-  @keyframes rainbow-shift {
-    0%   { background-position: 0% 0; }
-    100% { background-position: 400% 0; }
+  @keyframes glow-pulse {
+    0%, 100% { 
+      filter: drop-shadow(0 0 10px rgba(142, 255, 184, 0.5)) 
+              drop-shadow(0 0 20px rgba(142, 255, 184, 0.3));
+    }
+    50% { 
+      filter: drop-shadow(0 0 20px rgba(142, 255, 184, 0.8)) 
+              drop-shadow(0 0 40px rgba(142, 255, 184, 0.5))
+              drop-shadow(0 0 60px rgba(142, 255, 184, 0.3));
+    }
   }
   
   
-  /* slogan e sub */
+  /* slogan e sub - Merriweather para elegância */
   #app-loader .slogan {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #e2e8f0;
+    color: #8effb8;
     text-align: center;
     z-index: 10;
+    font-family: 'Merriweather', serif;
+    font-style: italic;
     animation: fade-in 2s ease 0.5s forwards;
     opacity: 0;
+    text-shadow: 0 0 10px rgba(142, 255, 184, 0.3);
   }
   
   #app-loader .sub-slogan {
     font-size: 1rem;
-    color: #cbd5e1;
+    color: #6ee7b7;
     text-align: center;
     z-index: 10;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
     animation: fade-in 2s ease 1s forwards;
     opacity: 0;
+    text-shadow: 0 0 8px rgba(110, 231, 183, 0.2);
   }
   
   @keyframes fade-in {
