@@ -8,6 +8,7 @@ import { DailyProgressChartComponent } from '../../../../shared/ui/daily-progres
 import { DailyMotivationComponent } from '../../../../shared/ui/daily-motivation/daily-motivation.component';
 import { MissionVisionValuesComponent } from '../../../../shared/ui/mission-vision-values/mission-vision-values.component';
 import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-header.component';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'f-tabs-home-page',
@@ -18,6 +19,7 @@ import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-head
 })
 export default class HomePage implements OnInit {
   readonly chartComponent = viewChild(DailyProgressChartComponent);
+  readonly appVersion = environment.version;
 
   ngOnInit() {
   }
