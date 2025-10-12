@@ -79,8 +79,8 @@ Aplicação web para gerenciamento de rituais criativos, metas e atividades quâ
 ## 📦 Instalação
 
 ### Pré-requisitos
-- Node.js 18+ 
-- npm 9+
+- Node.js 20+ 
+- npm 10+
 
 ### Passos
 
@@ -271,6 +271,7 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 🙏 Agradecimentos
 
+- **Windsurf e Família** - Pelo suporte, inspiração e energia criativa que tornou este projeto possível
 - [Angular Team](https://angular.dev) - Framework incrível
 - [PrimeNG](https://primeng.org) - Componentes UI de qualidade
 - [Tailwind CSS](https://tailwindcss.com) - Utilitários CSS poderosos
