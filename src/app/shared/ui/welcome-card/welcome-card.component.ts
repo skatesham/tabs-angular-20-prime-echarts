@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { WEEK_DAYS, QUANTUM_MESSAGES, type WeekDay } from '../../../data/constants';
+import { WEEK_DAYS, type WeekDay } from '../../../config/rituals';
+import { QUANTUM_MESSAGES } from '../../../config/content';
 import { DateUtils } from '../../utils/date.utils';
 
 @Component({

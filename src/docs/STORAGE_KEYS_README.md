@@ -1,3 +1,7 @@
+---
+trigger: model_decision
+---
+
 # Storage Keys - Documentação
 
 ## 📦 Chaves de LocalStorage

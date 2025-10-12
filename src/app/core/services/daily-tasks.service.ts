@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { DAILY_TASKS_BY_WEEKDAY, STORAGE_KEY_DAILY_TASKS } from '../../data/constants';
+import { DAILY_TASKS_BY_WEEKDAY } from '../../config/rituals';
+import { STORAGE_KEY_DAILY_TASKS } from '../../config/storage';
 import { StorageService } from './storage.service';
 
 export interface Task {

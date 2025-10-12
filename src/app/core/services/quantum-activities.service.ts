@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { StorageService } from './storage.service';
-import { STORAGE_KEY_QUANTUM_ACTIVITIES, STORAGE_KEY_QUANTUM_PENDING } from '../../data/constants';
+import { STORAGE_KEY_QUANTUM_ACTIVITIES, STORAGE_KEY_QUANTUM_PENDING } from '../../config/storage';
 import { DateUtils } from '../../shared/utils/date.utils';
 
 interface MonthlyData {

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { StorageService } from './storage.service';
-import { STORAGE_KEY_MISSION_VISION_VALUES } from '../../data/constants/storage-keys.constants';
-import { DEFAULT_MISSION_VISION_VALUES, PILLAR_ICONS, PILLAR_COLORS, type Pillar } from '../../data/constants/mission-vision-values.constants';
+import { STORAGE_KEY_MISSION_VISION_VALUES } from '../../config/storage';
+import { DEFAULT_MISSION_VISION_VALUES, PILLAR_ICONS, PILLAR_COLORS, type Pillar } from '../../config/content';
 
 @Injectable({
   providedIn: 'root'

@@ -3,7 +3,8 @@ import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
-import { QUANTUM_ACTIVITIES, INSPIRATION_MESSAGES, type ActivityTemplate, type InspirationMessage } from '../../../data/constants';
+import { QUANTUM_ACTIVITIES, type ActivityTemplate } from '../../../config/rituals';
+import { INSPIRATION_MESSAGES, type InspirationMessage } from '../../../config/content';
 import { QuantumActivitiesService } from '../../../core/services/quantum-activities.service';
 
 @Component({

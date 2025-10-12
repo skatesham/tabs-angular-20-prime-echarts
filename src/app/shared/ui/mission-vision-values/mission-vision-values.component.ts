@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { MissionVisionValuesService } from '../../../core/services/mission-vision-values.service';
-import { type Pillar } from '../../../data/constants';
+import { type Pillar } from '../../../config/content';
 
 @Component({
   selector: 'p-mission-vision-values',

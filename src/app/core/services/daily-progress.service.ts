@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { StorageService } from './storage.service';
-import { STORAGE_KEY_DAILY_PROGRESS } from '../../data/constants';
+import { STORAGE_KEY_DAILY_PROGRESS } from '../../config/storage';
 import { DateUtils } from '../../shared/utils/date.utils';
 
 export interface DailyProgress {
