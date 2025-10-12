@@ -8,7 +8,8 @@ import { Component, input } from '@angular/core';
 export class PageHeaderComponent {
   readonly title = input.required<string>();
   readonly subtitle = input.required<string>();
-  readonly icon = input.required<string>();
+  readonly icon = input<string>('');
+  readonly logoImage = input<string>('');
   readonly badgeIcon = input<string>('✨');
   readonly badgeLabel = input<string>('Ativo');
   readonly gradientFrom = input<string>('indigo-500');

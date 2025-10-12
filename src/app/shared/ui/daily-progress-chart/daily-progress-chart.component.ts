@@ -130,7 +130,10 @@ export class DailyProgressChartComponent {
 
   private formatDisplayDate(dateStr: string): string {
     const [year, month, day] = dateStr.split('-');
-    return `${day}/${month}`;
+    const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+    const dayName = dayNames[date.getDay()];
+    return `${dayName}\n${day}/${month}`;
   }
 
   private updateChart() {
@@ -169,7 +172,7 @@ export class DailyProgressChartComponent {
       grid: {
         left: '50',
         right: '20',
-        bottom: '40',
+        bottom: '60',
         top: '40'
       },
       xAxis: {
@@ -182,7 +185,10 @@ export class DailyProgressChartComponent {
         },
         axisLabel: {
           color: '#6b7280',
-          fontSize: 11
+          fontSize: 12,
+          fontWeight: 500,
+          interval: 0,
+          lineHeight: 16
         }
       },
       yAxis: {
