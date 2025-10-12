@@ -16,6 +16,6 @@ export class App implements OnInit {
     // Minimum loading time of 3000ms
     setTimeout(() => {
       this.loading.set(false);
-    }, 1000);
+    }, 6000);
   }
 }

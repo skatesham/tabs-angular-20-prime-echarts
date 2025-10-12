@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal, OnInit, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BuyerService } from '../../../buyers/services/buyer.service';
 import { QuantumActivitiesComponent } from '../../../../shared/ui/quantum-activities/quantum-activities.component';
 import { WelcomeCardComponent } from '../../../../shared/ui/welcome-card/welcome-card.component';
 import { GoalFocusComponent } from '../../../../shared/ui/goal-focus/goal-focus.component';

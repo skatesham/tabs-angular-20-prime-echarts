@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href /tabs-angular-20-prime-echarts/ && npx angular-cli-ghpages --dir=dist/mana-vitae/browser"
   },
   "prettier": {
     "printWidth": 100,
@@ -35,7 +36,6 @@
     "postcss": "^8.5.6",
     "primeng": "^20.2.0",
     "rxjs": "~7.8.0",
-    "sql.js": "^1.13.0",
     "tailwindcss": "^4.1.14",
     "tailwindcss-primeui": "^0.6.1",
     "tslib": "^2.3.0"
@@ -45,7 +45,6 @@
     "@angular/cli": "^20.3.5",
     "@angular/compiler-cli": "^20.3.0",
     "@types/jasmine": "~5.1.0",
-    "@types/sql.js": "^1.4.9",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
