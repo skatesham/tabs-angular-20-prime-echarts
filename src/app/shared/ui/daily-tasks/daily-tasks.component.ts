@@ -18,6 +18,7 @@ interface Task {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DailyTasksComponent {
+  private readonly TASKS_VERSION = 3; // Incrementar quando alterar tarefas padrão
   readonly progressChanged = output<{ completed: number; total: number }>();
   
   readonly tasks = signal<Task[]>([]);
@@ -62,6 +63,12 @@ export class DailyTasksComponent {
       const data = JSON.parse(stored);
       console.log('Dados parseados:', data);
       
+      // Verifica versão das tarefas
+      if (!data.version || data.version < this.TASKS_VERSION) {
+        console.log('Versão antiga detectada, carregando novas tarefas padrão');
+        return this.getDefaultTasks();
+      }
+      
       // Verifica se é o mesmo dia
       if (data.date === today && data.tasks && data.tasks.length > 0) {
         console.log('Mesmo dia, carregando tarefas salvas');
@@ -80,6 +87,7 @@ export class DailyTasksComponent {
   private saveTasks(tasks: Task[]) {
     const today = this.formatDate(new Date());
     const data = {
+      version: this.TASKS_VERSION,
       date: today,
       tasks
     };
