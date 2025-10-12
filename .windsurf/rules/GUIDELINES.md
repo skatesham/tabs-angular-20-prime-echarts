@@ -1,5 +1,5 @@
 ---
-trigger: always_on
+trigger: model_decision
 ---
 
 # Angular 20 + PrimeNG + Tailwind — Guia Simplificado
