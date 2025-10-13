@@ -4,6 +4,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { FormsModule } from '@angular/forms';
 import { DailyTasksService, type Task } from '../../../core/services/daily-tasks.service';
+import { AudioService } from '../../../core/services/audio.service';
+import { AUDIO_PATHS } from '../../../core/constants/audio-paths';
 
 @Component({
   selector: 'p-daily-tasks',
@@ -14,25 +16,36 @@ import { DailyTasksService, type Task } from '../../../core/services/daily-tasks
 })
 export class DailyTasksComponent {
   private readonly tasksService = inject(DailyTasksService);
+  private readonly audioService = inject(AudioService);
   readonly progressChanged = output<{ completed: number; total: number }>();
   
   readonly tasks = signal<Task[]>([]);
   private isInitialized = false;
+  private previousCompletedCount = 0;
 
   constructor() {
     this.tasks.set(this.tasksService.loadTasks());
+    this.previousCompletedCount = this.completedCount;
     this.isInitialized = true;
     this.checkDayChange();
     
     effect(() => {
       const tasks = this.tasks();
+      const currentCompletedCount = this.completedCount;
       
       if (this.isInitialized) {
         this.tasksService.saveTasks(tasks);
+        
+        // Play bell every 3 completed tasks
+        if (currentCompletedCount > this.previousCompletedCount && currentCompletedCount % 3 === 0) {
+          this.playBellSound();
+        }
+        
+        this.previousCompletedCount = currentCompletedCount;
       }
       
       this.progressChanged.emit({
-        completed: this.completedCount,
+        completed: currentCompletedCount,
         total: this.totalCount
       });
     });
@@ -59,5 +72,13 @@ export class DailyTasksComponent {
   onTaskChange() {
     // Força atualização do signal para disparar o effect
     this.tasks.set([...this.tasks()]);
+  }
+
+  private async playBellSound(): Promise<void> {
+    try {
+      await this.audioService.playAudio(AUDIO_PATHS.BELLS);
+    } catch (error) {
+      // Silently fail if audio is blocked
+    }
   }
 }

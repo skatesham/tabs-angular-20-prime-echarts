@@ -8,13 +8,15 @@ O sistema de áudio foi simplificado para funcionar automaticamente sem necessid
 
 1. **Ao carregar a página**: O loader aparece e tenta tocar o sino automaticamente
 2. **Primeira interação**: Se o navegador bloquear o áudio (política de autoplay), o som tocará na primeira interação do usuário com a página
-3. **Visitas subsequentes**: O áudio funciona normalmente após a primeira interação
+3. **A cada 3 rituais completados**: O sino toca automaticamente (3, 6, 9, etc.)
+4. **Visitas subsequentes**: O áudio funciona normalmente após a primeira interação
 
 ### Arquivos Principais
 
 - **`/src/app/core/services/audio.service.ts`**: Serviço para tocar áudios
 - **`/src/app/core/constants/audio-paths.ts`**: Caminhos centralizados dos arquivos de áudio
 - **`/src/app/shared/ui/app-loader/app-loader.component.ts`**: Toca o sino ao iniciar
+- **`/src/app/shared/ui/daily-tasks/daily-tasks.component.ts`**: Toca o sino a cada 3 rituais completados
 
 ### Como Adicionar Novos Sons
 
