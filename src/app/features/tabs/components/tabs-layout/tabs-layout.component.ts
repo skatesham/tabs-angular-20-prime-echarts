@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, signal, OnInit, PLATFORM_ID, OnDestroy } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet, NavigationEnd } from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { filter, Subscription } from 'rxjs';
 
 interface TabItem {
   id: string;
@@ -34,16 +35,75 @@ interface TabItem {
         color: rgb(96 165 250);
       }
     }
+    
+    /* Mobile optimizations */
+    main {
+      padding-bottom: 80px; /* Space for fixed bottom nav */
+    }
+    
+    @media (min-width: 768px) {
+      main {
+        padding-bottom: 96px;
+      }
+    }
+    
+    /* Safe area for mobile devices with notches */
+    .safe-area-inset-bottom {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    
+    .pb-safe {
+      padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    }
+    
+    @media (min-width: 768px) {
+      .pb-safe {
+        padding-bottom: calc(96px + env(safe-area-inset-bottom));
+      }
+    }
   `]
 })
-export class TabsLayoutComponent {
+export class TabsLayoutComponent implements OnInit, OnDestroy {
   private router = inject(Router);
+  private platformId = inject(PLATFORM_ID);
+  private routerSubscription?: Subscription;
 
   readonly tabs = signal<TabItem[]>([
     { id: 'home', label: 'Fluxo', path: 'home', icon: '✨' },
     { id: 'ideas', label: 'Rituais', path: 'ideas', icon: '🔮' },
     { id: 'config', label: 'Config', path: 'config', icon: '⚙️' },
   ]);
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      // Scroll inicial
+      this.ensureTabsVisible();
+      
+      // Scroll em cada mudança de rota
+      this.routerSubscription = this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this.ensureTabsVisible();
+        });
+    }
+  }
+
+  ngOnDestroy() {
+    this.routerSubscription?.unsubscribe();
+  }
+
+  private ensureTabsVisible() {
+    // Aguarda o DOM estar pronto
+    setTimeout(() => {
+      if (window.innerWidth <= 768) {
+        // Scroll para o topo em mobile para garantir que as tabs estejam visíveis
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  }
 
   // Verifica se a rota atual é de ritual para ativar a tab Rituais
   isRitualRoute(tabPath: string): boolean {

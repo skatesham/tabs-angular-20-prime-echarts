@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-header.component';
+import { StorageService } from '../../../../core/services/storage.service';
+import { STORAGE_KEY_QUANTUM_ACTIVITIES } from '../../../../config/storage';
 
 @Component({
   selector: 'f-tabs-ritual-monthly-page',
@@ -11,6 +13,7 @@ import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-head
 })
 export default class RitualMonthlyPage {
   private readonly router = inject(Router);
+  private readonly storage = inject(StorageService);
   readonly stepsCompleted = signal<boolean[]>([false, false, false, false, false, false, false, false, false]);
   readonly showTroubleshooting = signal(false);
 
@@ -52,13 +55,10 @@ export default class RitualMonthlyPage {
   }
 
   private loadPreviousData() {
-    const stored = localStorage.getItem('quantum-activities');
-    if (stored) {
-      const data = JSON.parse(stored);
-      if (data['monthly'] && typeof data['monthly'] === 'object') {
-        this.previousFocus.set(data['monthly'].focus || null);
-        this.previousGoal.set(data['monthly'].goal || null);
-      }
+    const data = this.storage.getItem<Record<string, any>>(STORAGE_KEY_QUANTUM_ACTIVITIES);
+    if (data && data['monthly'] && typeof data['monthly'] === 'object') {
+      this.previousFocus.set(data['monthly'].focus || null);
+      this.previousGoal.set(data['monthly'].goal || null);
     }
   }
 
@@ -96,14 +96,13 @@ export default class RitualMonthlyPage {
   completeRitual() {
     if (!this.canComplete) return;
 
-    const stored = localStorage.getItem('quantum-activities');
-    const data = stored ? JSON.parse(stored) : {};
+    const data = this.storage.getItem<Record<string, any>>(STORAGE_KEY_QUANTUM_ACTIVITIES) || {};
     data['monthly'] = {
       timestamp: Date.now(),
       focus: this.monthlyFocus(),
       goal: this.monthlyGoal()
     };
-    localStorage.setItem('quantum-activities', JSON.stringify(data));
+    this.storage.setItem(STORAGE_KEY_QUANTUM_ACTIVITIES, data);
     this.router.navigate(['/tabs/ideas']);
   }
 }

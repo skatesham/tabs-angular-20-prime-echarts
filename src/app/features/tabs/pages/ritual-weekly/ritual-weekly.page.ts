@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-header.component';
+import { StorageService } from '../../../../core/services/storage.service';
+import { STORAGE_KEY_QUANTUM_ACTIVITIES } from '../../../../config/storage';
 
 @Component({
   selector: 'f-tabs-ritual-weekly-page',
@@ -11,6 +13,7 @@ import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-head
 })
 export default class RitualWeeklyPage {
   private readonly router = inject(Router);
+  private readonly storage = inject(StorageService);
   readonly stepsCompleted = signal<boolean[]>([false, false, false, false, false, false]);
   readonly showTroubleshooting = signal(false);
 
@@ -33,10 +36,9 @@ export default class RitualWeeklyPage {
   }
 
   completeRitual() {
-    const stored = localStorage.getItem('quantum-activities');
-    const data = stored ? JSON.parse(stored) : {};
+    const data = this.storage.getItem<Record<string, number>>(STORAGE_KEY_QUANTUM_ACTIVITIES) || {};
     data['weekly'] = Date.now();
-    localStorage.setItem('quantum-activities', JSON.stringify(data));
+    this.storage.setItem(STORAGE_KEY_QUANTUM_ACTIVITIES, data);
     this.router.navigate(['/tabs/ideas']);
   }
 }

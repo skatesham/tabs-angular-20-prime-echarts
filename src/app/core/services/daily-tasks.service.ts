@@ -21,7 +21,7 @@ interface TasksData {
 export class DailyTasksService {
   private readonly storage = inject(StorageService);
   private readonly STORAGE_KEY = STORAGE_KEY_DAILY_TASKS;
-  private readonly TASKS_VERSION = 5;
+  private readonly TASKS_VERSION = 6;
 
   loadTasks(): Task[] {
     const today = this.formatDate(new Date());
@@ -54,7 +54,7 @@ export class DailyTasksService {
       completed: false
     }));
 
-    return this.selectRandomTasks(allTasks, 8, today);
+    return this.selectRandomTasks(allTasks, 5, today);
   }
 
   private selectRandomTasks(tasks: Task[], count: number, seed: string): Task[] {
