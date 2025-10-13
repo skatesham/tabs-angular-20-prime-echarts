@@ -18,6 +18,7 @@ export const SUNDAY_TASKS: readonly DailyTaskTemplate[] = [
   { label: 'Ver o que está em andamento' },
   { label: 'Anotar o que precisa resolver' },
   { label: 'Explorar referências visuais' },
+  { label: 'Passear com cachorro' },
 ] as const;
 
 export const MONDAY_TASKS: readonly DailyTaskTemplate[] = [
@@ -36,6 +37,7 @@ export const MONDAY_TASKS: readonly DailyTaskTemplate[] = [
   { label: 'Testar combinação de materiais' },
   { label: 'Documentar processo com fotos' },
   { label: 'Consumir conteúdo inspirador' },
+  { label: 'Passear com cachorro' },
 ] as const;
 
 export const TUESDAY_TASKS: readonly DailyTaskTemplate[] = [
@@ -54,6 +56,7 @@ export const TUESDAY_TASKS: readonly DailyTaskTemplate[] = [
   { label: 'Conhecer trabalhos de outros criadores' },
   { label: 'Anotar ideias que surgirem' },
   { label: 'Preparar materiais para próximo dia' },
+  { label: 'Passear com cachorro' },
 ] as const;
 
 export const WEDNESDAY_TASKS: readonly DailyTaskTemplate[] = [
@@ -72,6 +75,7 @@ export const WEDNESDAY_TASKS: readonly DailyTaskTemplate[] = [
   { label: 'Documentar processo com fotos' },
   { label: 'Explorar referências visuais' },
   { label: 'Preparar materiais para próximo dia' },
+  { label: 'Passear com cachorro' },
 ] as const;
 
 export const THURSDAY_TASKS: readonly DailyTaskTemplate[] = [
@@ -90,6 +94,7 @@ export const THURSDAY_TASKS: readonly DailyTaskTemplate[] = [
   { label: 'Explorar referências visuais' },
   { label: 'Anotar ideias que surgirem' },
   { label: 'Preparar materiais para próximo dia' },
+  { label: 'Passear com cachorro' },
 ] as const;
 
 export const FRIDAY_TASKS: readonly DailyTaskTemplate[] = [
@@ -108,6 +113,7 @@ export const FRIDAY_TASKS: readonly DailyTaskTemplate[] = [
   { label: 'Conhecer trabalhos de outros criadores' },
   { label: 'Anotar ideias que surgirem' },
   { label: 'Ver o que ficou para próxima semana' },
+  { label: 'Passear com cachorro' },
 ] as const;
 
 export const SATURDAY_TASKS: readonly DailyTaskTemplate[] = [
@@ -126,6 +132,7 @@ export const SATURDAY_TASKS: readonly DailyTaskTemplate[] = [
   { label: 'Conhecer trabalhos de outros criadores' },
   { label: 'Consumir conteúdo inspirador' },
   { label: 'Reorganizar materiais' },
+  { label: 'Passear com cachorro' },
 ] as const;
 
 export const DAILY_TASKS_BY_WEEKDAY: readonly (readonly DailyTaskTemplate[])[] = [
