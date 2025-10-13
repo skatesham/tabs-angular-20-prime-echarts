@@ -13,7 +13,7 @@ export class App implements OnInit {
   protected readonly loading = signal(true);
 
   ngOnInit(): void {
-    // Minimum loading time of 3000ms
+    // Minimum loading time of 6000ms
     setTimeout(() => {
       this.loading.set(false);
     }, 6000);
