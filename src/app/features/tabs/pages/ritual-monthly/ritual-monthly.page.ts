@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-header.component';
 import { StorageService } from '../../../../core/services/storage.service';
 import { AudioService } from '../../../../core/services/audio.service';
-import { AUDIO_PATHS } from '../../../../core/constants/audio-paths';
 import { STORAGE_KEY_QUANTUM_ACTIVITIES } from '../../../../config/storage';
 
 @Component({
@@ -59,17 +58,7 @@ export default class RitualMonthlyPage implements OnInit {
 
   ngOnInit(): void {
     // Toca som ao entrar na página do ritual
-    this.playRitualSound();
-  }
-
-  private async playRitualSound(): Promise<void> {
-    try {
-      const baseUrl = document.baseURI;
-      const audioUrl = new URL(AUDIO_PATHS.BELLS, baseUrl).href;
-      await this.audioService.playAudio(audioUrl);
-    } catch (error) {
-      console.log('Som não pôde ser reproduzido:', error);
-    }
+    this.audioService.playRitualSound();
   }
 
   private loadPreviousData() {
@@ -115,7 +104,7 @@ export default class RitualMonthlyPage implements OnInit {
     if (!this.canComplete) return;
 
     // Toca som ao completar o ritual (não aguarda)
-    this.playRitualSound();
+    this.audioService.playRitualSound();
 
     const data = this.storage.getItem<Record<string, any>>(STORAGE_KEY_QUANTUM_ACTIVITIES) || {};
     data['monthly'] = {
@@ -124,6 +113,6 @@ export default class RitualMonthlyPage implements OnInit {
       goal: this.monthlyGoal()
     };
     this.storage.setItem(STORAGE_KEY_QUANTUM_ACTIVITIES, data);
-    this.router.navigate(['/tabs/ideas']);
+    this.router.navigate(['/tabs/home']);
   }
 }

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-header.component';
 import { StorageService } from '../../../../core/services/storage.service';
 import { AudioService } from '../../../../core/services/audio.service';
-import { AUDIO_PATHS } from '../../../../core/constants/audio-paths';
 import { STORAGE_KEY_QUANTUM_ACTIVITIES } from '../../../../config/storage';
 
 @Component({
@@ -20,29 +19,19 @@ export default class RitualDailyPage implements OnInit {
 
   ngOnInit(): void {
     // Toca som ao entrar na página do ritual
-    this.playRitualSound();
-  }
-
-  private async playRitualSound(): Promise<void> {
-    try {
-      const baseUrl = document.baseURI;
-      const audioUrl = new URL(AUDIO_PATHS.BELLS, baseUrl).href;
-      await this.audioService.playAudio(audioUrl);
-    } catch (error) {
-      console.log('Som não pôde ser reproduzido:', error);
-    }
+    this.audioService.playRitualSound();
   }
 
   completeRitual() {
     // Toca som ao completar o ritual (não aguarda)
-    this.playRitualSound();
+    this.audioService.playRitualSound();
     
     // Salva conclusão no storage usando o service
     const data = this.storage.getItem<Record<string, number>>(STORAGE_KEY_QUANTUM_ACTIVITIES) || {};
     data['daily'] = Date.now();
     this.storage.setItem(STORAGE_KEY_QUANTUM_ACTIVITIES, data);
 
-    // Navega de volta para a página de rituais
-    this.router.navigate(['/tabs/ideas']);
+    // Navega para a home
+    this.router.navigate(['/tabs/home']);
   }
 }
