@@ -35,12 +35,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
-        theme: {
-            preset: ManaVitaePreset,
-            options: {
-              darkModeSelector: 'system'
-            }
+      theme: {
+        preset: ManaVitaePreset,
+        options: {
+          darkModeSelector: 'system'
         }
+      }
     })
   ]
 };

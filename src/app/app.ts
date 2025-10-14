@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppLoaderComponent } from './shared/ui/app-loader/app-loader.component';
 
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, AppLoaderComponent],
