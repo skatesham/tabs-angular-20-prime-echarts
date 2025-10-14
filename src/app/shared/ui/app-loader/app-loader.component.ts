@@ -11,6 +11,7 @@ import { AudioService } from '../../../core/services/audio.service';
 export class AppLoaderComponent implements OnInit {
   readonly showSoundButton = signal(false);
   readonly soundPlaying = signal(false);
+  private isPlayingAudio = false;
   
   constructor(private audioService: AudioService) {}
 
@@ -37,15 +38,27 @@ export class AppLoaderComponent implements OnInit {
   }
 
   async activateSound(): Promise<void> {
+    // Previne múltiplos cliques
+    if (this.isPlayingAudio) {
+      console.log('⚠️ Áudio já está sendo reproduzido');
+      return;
+    }
+
     try {
-      await this.audioService.playRitualSound();
-      this.soundPlaying.set(true);
+      this.isPlayingAudio = true;
       this.showSoundButton.set(false);
+      this.soundPlaying.set(true);
+      
+      await this.audioService.playRitualSound();
       console.log('✅ Áudio ativado pelo usuário');
+      
+      // Mantém o indicador de reprodução visível
     } catch (error) {
       console.error('❌ Erro ao tocar áudio:', error);
-      // Mantém o botão visível se falhar
+      // Se falhar, volta a mostrar o botão
       this.showSoundButton.set(true);
+      this.soundPlaying.set(false);
+      this.isPlayingAudio = false;
     }
   }
 }
