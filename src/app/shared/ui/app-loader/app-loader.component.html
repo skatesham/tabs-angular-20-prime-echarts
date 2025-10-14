@@ -9,6 +9,24 @@
       </h1>
       <p class="slogan">Fluxo sagrado da vida.</p>
       <p class="sub-slogan">Doe energia, receba prosperidade.</p>
+      
     </div>
+    
+    <!-- Sound Button - Footer Position -->
+    @if (showSoundButton()) {
+      <button 
+        (click)="activateSound()"
+        class="sound-button"
+        aria-label="Ativar som">
+        <span class="sound-icon">⚛️</span>
+        <span class="sound-text">Toque para ativar o som</span>
+      </button>
+    }
+    
+    @if (soundPlaying()) {
+      <div class="sound-indicator">
+        <span class="sound-wave">🎵</span>
+      </div>
+    }
   </div>
   

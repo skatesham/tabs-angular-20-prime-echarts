@@ -433,3 +433,73 @@ blockquote::before {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Animações de Scroll - Calm & Confident */
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeinup {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeindown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeinleft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeinright {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fadein {
+  animation: fadein 1s ease-out;
+}
+
+.fadeinup {
+  animation: fadeinup 1s ease-out;
+}
+
+.fadeindown {
+  animation: fadeindown 1s ease-out;
+}
+
+.fadeinleft {
+  animation: fadeinleft 1s ease-out;
+}
+
+.fadeinright {
+  animation: fadeinright 1s ease-out;
+}

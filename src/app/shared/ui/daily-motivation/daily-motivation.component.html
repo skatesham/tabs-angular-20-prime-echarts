@@ -1,7 +1,10 @@
 <p-card class="shadow-lg">
   <div class="flex flex-col items-center gap-6 p-4">
     <!-- Imagem Mandala com Aura 528 Hz -->
-    <div class="w-full max-w-md flex justify-center">
+    <div 
+      class="w-full max-w-md flex justify-center"
+      pAnimateOnScroll
+      enterClass="fadein">
       <div class="mandala-container">
         <img 
           src="images/mandala-8380145_1920.png" 
@@ -12,7 +15,10 @@
     </div>
 
     <!-- Frase Motivacional -->
-    <div class="text-center max-w-2xl">
+    <div 
+      class="text-center max-w-2xl"
+      pAnimateOnScroll
+      enterClass="fadeinup">
       <blockquote class="text-xl md:text-2xl font-medium text-gray-800 dark:text-gray-200 italic mb-4">
         "{{ todayQuote.quote }}"
       </blockquote>
@@ -25,7 +31,10 @@
     </div>
 
     <!-- Mensagem Estilo Yoda -->
-    <div class="text-center mt-4">
+    <div 
+      class="text-center mt-4"
+      pAnimateOnScroll
+      enterClass="fadeinup">
       <p class="text-lg font-medium text-green-600 dark:text-green-400 italic">
         ✨ Pronto, tudo está. Fechar podes, e ao trabalho retornar. A Força contigo estará. ✨
       </p>

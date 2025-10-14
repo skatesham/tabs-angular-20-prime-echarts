@@ -14,7 +14,10 @@
     </div>
     
     <!-- Conteúdo -->
-    <div class="relative flex-1 z-10">
+    <div 
+      class="relative flex-1 z-10"
+      pAnimateOnScroll
+      enterClass="fadeinleft">
       <div class="flex items-center gap-4 mb-2">
         @if (logoImage()) {
           <img [src]="logoImage()" alt="Logo" class="w-16 h-16 md:w-20 md:h-20 object-contain" />
@@ -31,7 +34,10 @@
     </div>
     
     <!-- Badge decorativo -->
-    <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 relative z-10">
+    <div 
+      class="hidden md:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 relative z-10"
+      pAnimateOnScroll
+      enterClass="fadeinright">
       <span class="text-2xl">{{ badgeIcon() }}</span>
       <span class="text-sm font-medium text-white">{{ badgeLabel() }}</span>
     </div>

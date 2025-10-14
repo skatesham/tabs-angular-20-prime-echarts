@@ -1,6 +1,9 @@
 <p-card class="shadow-sm">
   <div class="flex flex-col gap-4">
-    <div class="flex flex-col gap-1">
+    <div 
+      class="flex flex-col gap-1"
+      pAnimateOnScroll
+      enterClass="fadeinleft">
       <div class="flex items-baseline gap-2">
         <h2 class="text-3xl font-semibold dark:text-white">{{ greeting }}</h2>
         <span class="text-xs text-gray-500 dark:text-gray-400">{{ formattedDate }}</span>
@@ -11,7 +14,10 @@
     </div>
     
     <!-- Dias da Semana -->
-    <div class="flex gap-2 overflow-x-auto pb-2">
+    <div 
+      class="flex gap-2 overflow-x-auto pb-2"
+      pAnimateOnScroll
+      enterClass="fadeinup">
       @for (day of orderedWeekDays; track day.index; let i = $index) {
         <div 
           class="flex flex-col items-center gap-1 px-3 py-2 rounded-lg min-w-[70px] transition-all"
@@ -42,7 +48,10 @@
       }
     </div>
 
-    <div class="flex items-center gap-3">
+    <div 
+      class="flex items-center gap-3"
+      pAnimateOnScroll
+      enterClass="fadeinright">
       <span class="text-2xl">{{ dayTheme.icon }}</span>
       <div class="flex flex-col gap-1">
         <p class="text-lg font-semibold text-gray-800 dark:text-gray-200">

@@ -3,6 +3,7 @@ import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { QUANTUM_ACTIVITIES, type ActivityTemplate } from '../../../config/rituals';
 import { INSPIRATION_MESSAGES, type InspirationMessage } from '../../../config/content';
 import { QuantumActivitiesService } from '../../../core/services/quantum-activities.service';
@@ -10,7 +11,7 @@ import { QuantumActivitiesService } from '../../../core/services/quantum-activit
 @Component({
   selector: 'p-quantum-activities',
   standalone: true,
-  imports: [CardModule, ChipModule, NgClass],
+  imports: [CardModule, ChipModule, NgClass, AnimateOnScrollModule],
   templateUrl: './quantum-activities.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

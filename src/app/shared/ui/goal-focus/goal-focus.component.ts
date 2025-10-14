@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @Component({
   selector: 'p-goal-focus',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, AnimateOnScrollModule],
   templateUrl: './goal-focus.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

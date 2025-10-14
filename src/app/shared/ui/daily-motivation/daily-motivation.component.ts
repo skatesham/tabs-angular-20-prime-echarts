@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 interface MotivationalQuote {
   quote: string;
@@ -10,7 +11,7 @@ interface MotivationalQuote {
 @Component({
   selector: 'p-daily-motivation',
   standalone: true,
-  imports: [CardModule],
+  imports: [CardModule, AnimateOnScrollModule],
   templateUrl: './daily-motivation.component.html',
   styleUrls: ['./daily-motivation.component.css']
 })

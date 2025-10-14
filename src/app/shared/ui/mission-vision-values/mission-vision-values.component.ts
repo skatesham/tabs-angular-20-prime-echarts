@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { FormsModule } from '@angular/forms';
 import { MissionVisionValuesService } from '../../../core/services/mission-vision-values.service';
 import { type Pillar } from '../../../config/content';
@@ -9,7 +10,7 @@ import { type Pillar } from '../../../config/content';
 @Component({
   selector: 'p-mission-vision-values',
   standalone: true,
-  imports: [CardModule, ButtonModule, InputTextModule, FormsModule],
+  imports: [CardModule, ButtonModule, InputTextModule, FormsModule, AnimateOnScrollModule],
   templateUrl: './mission-vision-values.component.html',
   styleUrls: ['./mission-vision-values.component.css']
 })

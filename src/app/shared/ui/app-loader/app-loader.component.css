@@ -140,5 +140,102 @@
     pointer-events: none;
     transform: translateY(-9vh); /* slightly higher (~10% of viewport height) */
   }
-  
+
+/* Sound Button - Footer Position */
+.sound-button {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  border: 2px solid #8effb8;
+  border-radius: 50px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 0 20px rgba(142, 255, 184, 0.4),
+              0 0 40px rgba(142, 255, 184, 0.2);
+  animation: pulse-button 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  z-index: 20;
+}
+
+.sound-button:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 30px rgba(142, 255, 184, 0.6),
+              0 0 60px rgba(142, 255, 184, 0.4);
+}
+
+.sound-button:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+.sound-icon {
+  font-size: 1.3rem;
+  animation: spin-quantum 3s linear infinite;
+  display: inline-block;
+}
+
+.sound-text {
+  font-size: 0.85rem;
+}
+
+@keyframes pulse-button {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(142, 255, 184, 0.4),
+                0 0 40px rgba(142, 255, 184, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(142, 255, 184, 0.6),
+                0 0 60px rgba(142, 255, 184, 0.4);
+  }
+}
+
+@keyframes spin-quantum {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Sound Indicator - Footer Position */
+.sound-indicator {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8effb8;
+  font-size: 0.9rem;
+  animation: fade-in 0.5s ease;
+  z-index: 20;
+  padding: 0.5rem 1rem;
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 50px;
+  border: 1px solid #8effb8;
+  backdrop-filter: blur(10px);
+}
+
+.sound-wave {
+  font-size: 1.3rem;
+  animation: wave-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes wave-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
   

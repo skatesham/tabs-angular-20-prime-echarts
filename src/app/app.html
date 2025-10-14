@@ -1,5 +1,5 @@
 @if (loading()) {
   <p-app-loader />
+} @else if (showContent()) {
+  <router-outlet />
 }
-
-<router-outlet />

@@ -1,8 +1,10 @@
 import { Component, input } from '@angular/core';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @Component({
   selector: 'p-page-header',
   standalone: true,
+  imports: [AnimateOnScrollModule],
   templateUrl: './page-header.component.html'
 })
 export class PageHeaderComponent {

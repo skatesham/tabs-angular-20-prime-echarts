@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { WEEK_DAYS, type WeekDay } from '../../../config/rituals';
 import { QUANTUM_MESSAGES } from '../../../config/content';
 import { DateUtils } from '../../utils/date.utils';
@@ -7,7 +8,7 @@ import { DateUtils } from '../../utils/date.utils';
 @Component({
   selector: 'p-welcome-card',
   standalone: true,
-  imports: [CardModule],
+  imports: [CardModule, AnimateOnScrollModule],
   templateUrl: './welcome-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

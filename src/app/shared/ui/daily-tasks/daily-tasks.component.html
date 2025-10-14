@@ -1,6 +1,9 @@
 <p-card class="shadow-sm">
   <ng-template pTemplate="header">
-    <div class="px-6 pt-6 pb-4">
+    <div 
+      class="px-6 pt-6 pb-4"
+      pAnimateOnScroll
+      enterClass="fadeindown">
       <div class="flex items-center gap-3 mb-1">
         <span class="text-2xl">💪</span>
         <h3 class="text-xl font-semibold dark:text-white">Atividades diárias</h3>
@@ -10,7 +13,10 @@
   </ng-template>
 
   <div class="flex flex-col gap-4">
-    <div class="flex items-center justify-between">
+    <div 
+      class="flex items-center justify-between"
+      pAnimateOnScroll
+      enterClass="fadeinleft">
       <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
         {{ completedCount }} de {{ totalCount }} concluídas
       </span>
@@ -19,9 +25,16 @@
       </span>
     </div>
 
-    <p-progressBar [value]="progressPercentage" [showValue]="false"></p-progressBar>
+    <div
+      pAnimateOnScroll
+      enterClass="fadein">
+      <p-progressBar [value]="progressPercentage" [showValue]="false"></p-progressBar>
+    </div>
 
-    <div class="flex flex-col gap-3">
+    <div 
+      class="flex flex-col gap-3"
+      pAnimateOnScroll
+      enterClass="fadeinup">
       @for (task of tasks(); track task.id) {
         <div class="flex items-center gap-3 p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
           <p-checkbox 

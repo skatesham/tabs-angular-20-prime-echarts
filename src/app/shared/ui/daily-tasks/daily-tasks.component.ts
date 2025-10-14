@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, effect, inject, output, signal } fr
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { FormsModule } from '@angular/forms';
 import { DailyTasksService, type Task } from '../../../core/services/daily-tasks.service';
 import { AudioService } from '../../../core/services/audio.service';
@@ -10,7 +11,7 @@ import { AUDIO_PATHS } from '../../../core/constants/audio-paths';
 @Component({
   selector: 'p-daily-tasks',
   standalone: true,
-  imports: [CardModule, CheckboxModule, ProgressBarModule, FormsModule],
+  imports: [CardModule, CheckboxModule, ProgressBarModule, FormsModule, AnimateOnScrollModule],
   templateUrl: './daily-tasks.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

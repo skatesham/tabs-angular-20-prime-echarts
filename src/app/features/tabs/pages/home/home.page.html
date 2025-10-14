@@ -10,12 +10,46 @@
     gradientTo="pink-500">
   </p-page-header>
   
-  <p-welcome-card class="mb-6"></p-welcome-card>
-  <p-quantum-activities></p-quantum-activities>
-  <p-daily-tasks class="mb-6"></p-daily-tasks>
-  <p-goal-focus class="mb-6"></p-goal-focus>
-  <p-daily-motivation class="mb-6"></p-daily-motivation>
-  <p-mission-vision-values class="mb-6"></p-mission-vision-values>
+  <div 
+    pAnimateOnScroll
+    enterClass="fadein"
+    class="mb-6">
+    <p-welcome-card></p-welcome-card>
+  </div>
+  
+  <div 
+    pAnimateOnScroll
+    enterClass="fadeinup">
+    <p-quantum-activities></p-quantum-activities>
+  </div>
+  
+  <div 
+    pAnimateOnScroll
+    enterClass="fadeinright"
+    class="mb-6">
+    <p-daily-tasks></p-daily-tasks>
+  </div>
+  
+  <div 
+    pAnimateOnScroll
+    enterClass="fadeinup"
+    class="mb-6">
+    <p-goal-focus></p-goal-focus>
+  </div>
+  
+  <div 
+    pAnimateOnScroll
+    enterClass="fadeinleft"
+    class="mb-6">
+    <p-daily-motivation></p-daily-motivation>
+  </div>
+  
+  <div 
+    pAnimateOnScroll
+    enterClass="fadeinup"
+    class="mb-6">
+    <p-mission-vision-values></p-mission-vision-values>
+  </div>
   
   <!-- App Version Footer -->
   <footer class="mt-8 mb-4 text-center">

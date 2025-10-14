@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { QuantumActivitiesComponent } from '../../../../shared/ui/quantum-activities/quantum-activities.component';
 import { WelcomeCardComponent } from '../../../../shared/ui/welcome-card/welcome-card.component';
 import { GoalFocusComponent } from '../../../../shared/ui/goal-focus/goal-focus.component';
@@ -12,7 +13,7 @@ import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'f-tabs-home-page',
   standalone: true,
-  imports: [CommonModule, PageHeaderComponent, QuantumActivitiesComponent, WelcomeCardComponent, GoalFocusComponent, DailyTasksComponent, DailyMotivationComponent, MissionVisionValuesComponent],
+  imports: [CommonModule, AnimateOnScrollModule, PageHeaderComponent, QuantumActivitiesComponent, WelcomeCardComponent, GoalFocusComponent, DailyTasksComponent, DailyMotivationComponent, MissionVisionValuesComponent],
   templateUrl: './home.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

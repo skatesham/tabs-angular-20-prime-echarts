@@ -2,7 +2,9 @@
 <div class="mb-6">
   <!-- Sub-header Inspiração -->
   <div
-    class="mb-4 px-4 py-3 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 rounded-lg border-l-4 border-purple-400 dark:border-purple-600">
+    class="mb-4 px-4 py-3 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 rounded-lg border-l-4 border-purple-400 dark:border-purple-600"
+    pAnimateOnScroll
+    enterClass="fadeindown">
     <div class="flex items-start gap-3">
       <span class="text-2xl">{{ inspirationMessage.icon }}</span>
       <div class="flex-1">
@@ -27,10 +29,13 @@
 
 
   <div class="grid gap-4 md:grid-cols-3">
-    @for (activity of visibleActivities; track activity.id) {
-    <p-card
-      class="shadow-md border-2 {{ activity.borderColor }} {{ activity.bgColor }} cursor-pointer hover:opacity-80 transition-opacity"
-      (click)="onActivityClick(activity.id)">
+    @for (activity of visibleActivities; track activity.id; let i = $index) {
+    <div
+      pAnimateOnScroll
+      [enterClass]="i === 0 ? 'fadeinleft' : i === 1 ? 'fadeinup' : 'fadeinright'">
+      <p-card
+        class="shadow-md border-2 {{ activity.borderColor }} {{ activity.bgColor }} cursor-pointer hover:opacity-80 transition-opacity"
+        (click)="onActivityClick(activity.id)">
       <div class="flex items-center gap-3">
         <span class="text-3xl">{{ activity.icon }}</span>
         <div class="flex-1">
@@ -62,6 +67,7 @@
 
       </div>
     </p-card>
+    </div>
     }
   </div>
 </div>
