@@ -23,14 +23,16 @@ export class AppLoaderComponent implements OnInit {
 
   private async tryAutoplaySound(): Promise<void> {
     try {
+      console.log('🔊 Tentando autoplay...');
       await this.audioService.playRitualSound();
       this.soundPlaying.set(true);
       this.showSoundButton.set(false);
       console.log('✅ Áudio tocando automaticamente');
     } catch (error) {
       // Autoplay bloqueado - mostrar botão para mobile
-      console.log('🔇 Autoplay bloqueado - mostrando botão de som');
+      console.log('🔇 Autoplay bloqueado - mostrando botão de som', error);
       this.showSoundButton.set(true);
+      this.soundPlaying.set(false);
     }
   }
 

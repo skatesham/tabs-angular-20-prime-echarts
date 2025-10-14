@@ -39,12 +39,16 @@ export default class RitualWeeklyPage implements OnInit {
 
   ngOnInit(): void {
     // Toca som ao entrar na página do ritual
-    this.audioService.playRitualSound();
+    this.audioService.playRitualSound().catch(() => {
+      // Ignora erro de autoplay bloqueado
+    });
   }
 
   completeRitual() {
     // Toca som ao completar o ritual (não aguarda)
-    this.audioService.playRitualSound();
+    this.audioService.playRitualSound().catch(() => {
+      // Ignora erro se som não puder tocar
+    });
     
     const data = this.storage.getItem<Record<string, number>>(STORAGE_KEY_QUANTUM_ACTIVITIES) || {};
     data['weekly'] = Date.now();

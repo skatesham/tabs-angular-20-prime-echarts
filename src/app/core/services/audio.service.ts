@@ -32,14 +32,11 @@ export class AudioService {
   /**
    * Play ritual bell sound with proper base URL resolution
    * @returns Promise that resolves when audio finishes playing
+   * @throws Error if audio cannot be played (e.g., autoplay blocked)
    */
   async playRitualSound(): Promise<void> {
-    try {
-      const baseUrl = document.baseURI;
-      const audioUrl = new URL(AUDIO_PATHS.BELLS, baseUrl).href;
-      await this.playAudio(audioUrl);
-    } catch (error) {
-      console.log('Som não pôde ser reproduzido:', error);
-    }
+    const baseUrl = document.baseURI;
+    const audioUrl = new URL(AUDIO_PATHS.BELLS, baseUrl).href;
+    await this.playAudio(audioUrl);
   }
 }

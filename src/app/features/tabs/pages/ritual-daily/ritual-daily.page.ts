@@ -19,12 +19,16 @@ export default class RitualDailyPage implements OnInit {
 
   ngOnInit(): void {
     // Toca som ao entrar na página do ritual
-    this.audioService.playRitualSound();
+    this.audioService.playRitualSound().catch(() => {
+      // Ignora erro de autoplay bloqueado
+    });
   }
 
   completeRitual() {
     // Toca som ao completar o ritual (não aguarda)
-    this.audioService.playRitualSound();
+    this.audioService.playRitualSound().catch(() => {
+      // Ignora erro se som não puder tocar
+    });
     
     // Salva conclusão no storage usando o service
     const data = this.storage.getItem<Record<string, number>>(STORAGE_KEY_QUANTUM_ACTIVITIES) || {};
