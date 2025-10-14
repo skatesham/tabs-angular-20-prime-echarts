@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageHeaderComponent } from '../../../../shared/ui/page-header/page-header.component';
 import { StorageService } from '../../../../core/services/storage.service';
+import { AudioService } from '../../../../core/services/audio.service';
+import { AUDIO_PATHS } from '../../../../core/constants/audio-paths';
 import { STORAGE_KEY_QUANTUM_ACTIVITIES } from '../../../../config/storage';
 
 @Component({
@@ -11,9 +13,10 @@ import { STORAGE_KEY_QUANTUM_ACTIVITIES } from '../../../../config/storage';
   templateUrl: './ritual-weekly.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class RitualWeeklyPage {
+export default class RitualWeeklyPage implements OnInit {
   private readonly router = inject(Router);
   private readonly storage = inject(StorageService);
+  private readonly audioService = inject(AudioService);
   readonly stepsCompleted = signal<boolean[]>([false, false, false, false, false, false]);
   readonly showTroubleshooting = signal(false);
 
@@ -35,7 +38,25 @@ export default class RitualWeeklyPage {
     this.showTroubleshooting.update(v => !v);
   }
 
+  ngOnInit(): void {
+    // Toca som ao entrar na página do ritual
+    this.playRitualSound();
+  }
+
+  private async playRitualSound(): Promise<void> {
+    try {
+      const baseUrl = document.baseURI;
+      const audioUrl = new URL(AUDIO_PATHS.BELLS, baseUrl).href;
+      await this.audioService.playAudio(audioUrl);
+    } catch (error) {
+      console.log('Som não pôde ser reproduzido:', error);
+    }
+  }
+
   completeRitual() {
+    // Toca som ao completar o ritual (não aguarda)
+    this.playRitualSound();
+    
     const data = this.storage.getItem<Record<string, number>>(STORAGE_KEY_QUANTUM_ACTIVITIES) || {};
     data['weekly'] = Date.now();
     this.storage.setItem(STORAGE_KEY_QUANTUM_ACTIVITIES, data);
