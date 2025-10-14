@@ -12,31 +12,54 @@ import { AUDIO_PATHS } from '../../../core/constants/audio-paths';
 export class AppLoaderComponent implements OnInit {
   readonly showSoundButton = signal(false);
   readonly soundPlaying = signal(false);
+  private audioElement: HTMLAudioElement | null = null;
   
   constructor(private audioService: AudioService) {}
 
   ngOnInit(): void {
-    this.tryAutoplaySound();
+    // Pré-carrega o áudio
+    this.audioElement = new Audio(AUDIO_PATHS.BELLS);
+    this.audioElement.volume = 0.7;
+    this.audioElement.load();
+    
+    // Tenta autoplay após um pequeno delay
+    setTimeout(() => {
+      this.tryAutoplaySound();
+    }, 100);
   }
 
   private async tryAutoplaySound(): Promise<void> {
+    if (!this.audioElement) return;
+    
     try {
-      await this.audioService.playAudio(AUDIO_PATHS.BELLS);
+      await this.audioElement.play();
       this.soundPlaying.set(true);
+      this.showSoundButton.set(false);
+      console.log('✅ Áudio tocando automaticamente');
     } catch (error) {
       // Autoplay bloqueado - mostrar botão para mobile
-      console.log('Autoplay bloqueado - mostrando botão de som');
+      console.log('🔇 Autoplay bloqueado - mostrando botão de som');
       this.showSoundButton.set(true);
     }
   }
 
   async activateSound(): Promise<void> {
+    if (!this.audioElement) {
+      this.audioElement = new Audio(AUDIO_PATHS.BELLS);
+      this.audioElement.volume = 0.7;
+    }
+    
     try {
-      await this.audioService.playAudio(AUDIO_PATHS.BELLS);
+      // Reseta o áudio se já foi tocado
+      this.audioElement.currentTime = 0;
+      await this.audioElement.play();
       this.soundPlaying.set(true);
       this.showSoundButton.set(false);
+      console.log('✅ Áudio ativado pelo usuário');
     } catch (error) {
-      console.error('Error playing bell sound:', error);
+      console.error('❌ Erro ao tocar áudio:', error);
+      // Mantém o botão visível se falhar
+      this.showSoundButton.set(true);
     }
   }
 }
